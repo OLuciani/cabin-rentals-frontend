@@ -1,36 +1,100 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# Frontend - Cabin Rentals Project 🏕️
 
-## Getting Started
+Este es el frontend del proyecto web de alquiler de cabañas, desarrollado con [Next.js](https://nextjs.org/) y [TypeScript](https://www.typescriptlang.org/).
 
-First, run the development server:
+---
+
+## 🚀 Inicio rápido
+
+1. Cloná el repositorio:
+
+```bash
+git clone https://github.com/tu-usuario/tu-repo-frontend.git
+cd tu-repo-frontend
+```
+
+2. Instalá las dependencias:
+
+```bash
+npm install
+# o
+yarn install
+```
+
+3. Creá un archivo `.env` en la raíz del proyecto y completalo según el ejemplo:
+
+```bash
+cp .env.example .env
+```
+
+4. Iniciá el servidor de desarrollo:
 
 ```bash
 npm run dev
-# or
+# o
 yarn dev
-# or
-pnpm dev
-# or
-bun dev
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Accedé a [http://localhost:3000](http://localhost:3000) para ver la aplicación en funcionamiento.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+---
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+## ⚙️ Variables de entorno
 
-## Learn More
+El archivo `.env` debe contener al menos la siguiente variable:
 
-To learn more about Next.js, take a look at the following resources:
+```env
+NEXT_PUBLIC_API_URL=http://localhost:5000
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+Esta URL debe apuntar al backend (API) que utiliza la aplicación.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+---
 
-## Deploy on Vercel
+## 📁 Estructura básica
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+- `/app`: configuración de rutas con el nuevo sistema de rutas de Next.js (App Router).
+- `/components`: componentes reutilizables de la interfaz.
+- `/styles`: archivos de estilos globales.
+- `/public`: recursos públicos como imágenes y fuentes.
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+---
+
+## 🛠️ Scripts disponibles
+
+- `dev`: inicia el servidor en modo desarrollo.
+- `build`: compila el proyecto para producción.
+- `start`: levanta el servidor en producción después de compilar.
+- `lint`: corre ESLint para detectar errores de código.
+
+---
+
+## 🧪 Dependencias clave
+
+- `next`
+- `react`
+- `typescript`
+- `tailwindcss` (si lo estás usando)
+- `axios` para llamadas a la API
+- `formik` y `yup` para formularios y validaciones
+- `react-icons` para íconos
+
+---
+
+## 📦 Despliegue
+
+Podés desplegar esta aplicación en plataformas como [Vercel](https://vercel.com/), que tiene integración nativa con proyectos Next.js.
+
+---
+
+## 📝 Notas
+
+- Asegurate de que tu archivo `.env` **no esté versionado** (`.gitignore` ya lo incluye por defecto).
+- Podés usar el archivo `.env.example` como referencia para otros desarrolladores.
+
+---
+
+## 📚 Licencia
+
+Este proyecto es privado y forma parte del sistema de reservas y alquiler de cabañas desarrollado por Oscar Luciani.
+

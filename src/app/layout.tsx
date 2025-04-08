@@ -1,15 +1,21 @@
-import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import "./globals.css";
 
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
+import { Inter, Merriweather } from 'next/font/google';
+import type { Metadata } from "next";
+import "./globals.css";
+import NavBar from "@/layouts/NavBar";
+import Footer from "@/layouts/Footer";
+
+// Configuración de fuentes
+const inter = Inter({
+  subsets: ['latin'],
+  weight: ['400', '700'],  // Pesos normal (400) y negrita (700)
+  variable: '--font-inter', // Estableces la variable global para Inter
 });
 
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
+const merriweather = Merriweather({
+  subsets: ['latin'],
+  weight: ['400', '700'],  // Pesos normal y negrita
+  variable: '--font-merriweather', // Estableces la variable global para Merriweather
 });
 
 export const metadata: Metadata = {
@@ -23,10 +29,18 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={`${geistSans.variable} ${geistMono.variable}`}>
-        {children}
+    <html lang="es">
+      <head />
+      <body className={`${inter.variable} ${merriweather.variable}`}>
+        <NavBar />
+
+        <div className='mt-16'> {/* Agrego este div con mt-16 porque el NavBar es fixed con z-10 y tiene justamente una altura de h-16 */}
+         {children}
+        </div>
+
+        <Footer />
       </body>
     </html>
   );
 }
+  

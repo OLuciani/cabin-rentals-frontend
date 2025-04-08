@@ -1,42 +1,46 @@
-:root {
-  --background: #ffffff;
-  --foreground: #171717;
-}
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
-  }
-}
-
-html,
-body {
-  max-width: 100vw;
-  overflow-x: hidden;
-}
-
-body {
-  color: var(--foreground);
-  background: var(--background);
-  font-family: Arial, Helvetica, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-
-* {
-  box-sizing: border-box;
-  padding: 0;
+/* Custom styles */
+html, body {
+  height: 100%;  /* Asegura que el html y body ocupen todo el alto */
   margin: 0;
+  padding: 0;
+  overflow-x: hidden; /* Evitar desbordamiento horizontal */
 }
 
-a {
-  color: inherit;
-  text-decoration: none;
+body {
+  display: flex;
+  flex-direction: column;
+  width: 100vw;
+  box-sizing: border-box;
+  background-color: #F5F5F5; /* Fondo base */
+  color: #000000; /* Texto oscuro por defecto */
 }
 
-@media (prefers-color-scheme: dark) {
-  html {
-    color-scheme: dark;
-  }
+/* Estilos para el modo oscuro */
+.dark html {
+  background-color: #2D3748; /* Fondo oscuro */
 }
+
+.dark body {
+  background-color: #2D3748; /* Fondo oscuro */
+  color: #f7fafc; /* Texto claro en modo oscuro */
+}
+
+main {
+  flex-grow: 1;  /* Hace que el main ocupe el espacio restante */
+  overflow-x: hidden; /* Evitar desbordamiento horizontal en el main */
+}
+
+/* Esta configuración es para forzar el fondo blanco y el color de texto negro 
+   en inputs, textareas y selects que el navegador completa automáticamente (autofill), 
+   ya que algunos navegadores aplican un fondo celeste por defecto. */
+   input:-webkit-autofill,
+   textarea:-webkit-autofill,
+   select:-webkit-autofill {
+     box-shadow: 0 0 0 1000px white inset !important;
+     -webkit-text-fill-color: black !important;
+   }
+
