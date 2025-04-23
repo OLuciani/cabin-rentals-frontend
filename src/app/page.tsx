@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <div className="text-textPrimary dark:text-darkText pb-10">
       {/* Hero Section */}
-      <section className="relative h-[300px] sm:h-[400px] md:h-[490px] xxxl:h-[700px] overflow-hidden">
+      <section className="relative h-[300px] sm:h-[400px] md:h-[530px] xxxl:h-[700px] overflow-hidden">
         <Image
           src="/images/img-cabaña-portada.jpg"
           alt="Cabaña en la naturaleza"

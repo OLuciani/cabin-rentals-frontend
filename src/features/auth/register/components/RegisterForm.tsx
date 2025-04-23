@@ -51,7 +51,7 @@ const RegisterForm = () => {
   };
 
   return (
-    <div className="bg-white p-6 rounded-xl shadow-md w-full max-w-md">
+    <div className="bg-white text-textPrimary p-6 rounded-xl shadow-md w-full max-w-md">
       <h2 className="text-2xl font-semibold mb-4 text-center">Crear cuenta</h2>
 
       <Formik

@@ -2,6 +2,9 @@
 @tailwind components;
 @tailwind utilities;
 
+@import 'keen-slider/keen-slider.min.css';
+
+
 /* Custom styles */
 html, body {
   height: 100%;  /* Asegura que el html y body ocupen todo el alto */

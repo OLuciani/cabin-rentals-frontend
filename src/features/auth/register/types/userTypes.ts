@@ -9,4 +9,3 @@ export interface RegisterUserDTO {
     name: string;
     email: string;
   }
-  
