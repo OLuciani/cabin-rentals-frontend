@@ -28,7 +28,7 @@ export const useCabins = () => {
 
 
 // useCabins.ts
-import { useEffect, useState } from "react";
+/* import { useEffect, useState } from "react";
 import { getCabins } from "../services/cabinService";
 import { Cabin } from "../types/cabin";
 
@@ -52,6 +52,40 @@ export const useCabins = (startDate?: string, endDate?: string) => {
 
     fetchData();
   }, [startDate, endDate]);
+
+  return { cabins, loading, error };
+}; */
+
+
+import { useEffect, useState } from "react";
+import { getCabins } from "../services/cabinService";
+import { Cabin } from "../types/cabin";
+
+export const useCabins = (
+  startDate?: string,
+  endDate?: string,
+  guests?: string,
+  rooms?: string
+) => {
+  const [cabins, setCabins] = useState<Cabin[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const data = await getCabins(startDate, endDate, guests, rooms);
+        setCabins(data);
+      } catch (err) {
+        console.error(err);
+        setError("Error al cargar las cabañas");
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    fetchData();
+  }, [startDate, endDate, guests, rooms]);
 
   return { cabins, loading, error };
 };

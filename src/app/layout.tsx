@@ -4,7 +4,7 @@ import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/layouts/NavBar";
 import Footer from "@/layouts/Footer";
-import SessionInitializer from '@/components/SessionInitializer';
+import SessionInitializer from '@/components/sessionInitializer/SessionInitializer';
 
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';

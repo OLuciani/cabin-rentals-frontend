@@ -18,7 +18,8 @@
     },
     "types": [
       "node",
-      "tailwindcss"
+      "tailwindcss",
+      "jest"
     ],
     "target": "es5",
     "downlevelIteration": true

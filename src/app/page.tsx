@@ -1,5 +1,5 @@
 "use client"
-import DateFilter from "../features/availability/DateFilter";
+import DateFilter from "../features/availability/components/DateFilter";
 import Image from "next/image";
 import axios, { AxiosResponse } from "axios";
 import { useEffect } from "react";

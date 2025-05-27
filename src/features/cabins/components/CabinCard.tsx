@@ -510,7 +510,7 @@ const CabinCard = ({ cabin }: Props) => {
   return (
     <div
       onClick={() => router.push(`/cabins/${cabin._id}`)}
-      className="w-full sm:w-[350px] bg-white rounded-xl overflow-hidden relative cursor-pointer transition-shadow hover:shadow-md"
+      className="w-full xs:w-[350px] bg-white rounded-xl overflow-hidden relative cursor-pointer transition-shadow hover:shadow-md"
     >
       
       <div className="relative w-full h-[200px] sm:h-[250px] group">
@@ -524,7 +524,7 @@ const CabinCard = ({ cabin }: Props) => {
         />
       </div>
 
-      <div className="p-4 bg-white bg-opacity-90 transition-all duration-300">
+      <div className="p-4 h-[170px] bg-white bg-opacity-90 transition-all duration-300">
         <h2 className="text-lg font-semibold text-gray-900">{cabin.name}</h2>
         <p className="text-sm text-gray-500 mt-1 line-clamp-2 min-h-[2rem]">
           {cabin.description}

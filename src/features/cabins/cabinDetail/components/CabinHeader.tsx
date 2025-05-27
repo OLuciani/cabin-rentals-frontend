@@ -87,8 +87,9 @@ export default CabinHeader; */
 import React from "react";
 import Image from "next/image";
 import { CabinDetailProps } from "../types/cabinDetailTypes";
+import { Button } from "@mui/material";
 
-const CabinHeader: React.FC<CabinDetailProps> = ({ cabin, openModal }) => {
+const CabinHeader: React.FC<CabinDetailProps> = ({ cabin, openModal, handleReserveClick }) => {
   return (
     <div className="space-y-6">
       {cabin && (
@@ -107,6 +108,17 @@ const CabinHeader: React.FC<CabinDetailProps> = ({ cabin, openModal }) => {
               />
             </div>
           </div>
+
+          <div className="flex justify-center">
+        <Button
+          variant="contained"
+          color="primary"
+          onClick={handleReserveClick}
+          className="mt-4"
+        >
+          Reservar esta cabaña
+        </Button>
+      </div>
 
           {/* Detalles de la Cabina */}
           <div className="text-center space-y-1">

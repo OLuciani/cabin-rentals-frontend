@@ -24,4 +24,7 @@ export interface Cabin {
     prevImage?: () => void;
     nextImage?: () => void;
     src?: string | HTMLImageElement
+    handleReserveClick?: () => void;
+  
+  
   }

@@ -9,7 +9,7 @@ import { useAuthStore } from "@/store/useAuthStore";
 export default function NavBar() {
   const [darkMode, setDarkMode] = useState(false);
   const [showUserMenu, setShowUserMenu] = useState(false);
-  const { isLoggedIn, user, logout } = useAuthStore();
+  const { isLoggedIn, user, logout, isLoadingUser } = useAuthStore();
   const pathname = usePathname();
 
   const handleLogout = async () => {
@@ -62,15 +62,23 @@ export default function NavBar() {
                   href={link.href}
                   className={`relative text-sm sm:text-base md:text-lg transition duration-200 
                   hover:text-secondary dark:hover:text-darkSecondary
-                  ${pathname === link.href ? "text-secondary dark:text-darkSecondary" : ""}
-                  ${pathname === link.href ? "after:absolute after:left-0 after:right-0 after:bottom-[-6px] after:mx-auto after:w-6 after:h-[2px] after:bg-secondary dark:after:bg-darkSecondary after:rounded-md" : ""}`}
+                  ${
+                    pathname === link.href
+                      ? "text-secondary dark:text-darkSecondary"
+                      : ""
+                  }
+                  ${
+                    pathname === link.href
+                      ? "after:absolute after:left-0 after:right-0 after:bottom-[-6px] after:mx-auto after:w-6 after:h-[2px] after:bg-secondary dark:after:bg-darkSecondary after:rounded-md"
+                      : ""
+                  }`}
                 >
                   {link.label}
                 </Link>
               </li>
             ))}
 
-            {!isLoggedIn && !user && (
+            {isLoadingUser ? null : !isLoggedIn && !user ? (
               <li className="relative">
                 <FiUser
                   className="cursor-pointer text-lg"
@@ -96,19 +104,20 @@ export default function NavBar() {
                   </div>
                 )}
               </li>
-            )}
-
-            {isLoggedIn && user && (
-              <li className="flex gap-2 items-center text-secondary dark:text-darkSecondary">
-                <FiUser size={22} />
-                <p className="hidden md:block md:text-lg">{user.name}</p>
-                <button
-                  onClick={handleLogout}
-                  className="ml-2 text-sm bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded transition duration-200"
-                >
-                  Cerrar sesión
-                </button>
-              </li>
+            ) : (
+              isLoggedIn &&
+              user && (
+                <li className="flex gap-2 items-center text-secondary dark:text-darkSecondary">
+                  <FiUser size={22} />
+                  <p className="hidden md:block md:text-lg">{user.name}</p>
+                  <button
+                    onClick={handleLogout}
+                    className="ml-2 text-sm bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded transition duration-200"
+                  >
+                    Cerrar sesión
+                  </button>
+                </li>
+              )
             )}
           </ul>
         </nav>
@@ -127,5 +136,3 @@ export default function NavBar() {
     </header>
   );
 }
-
-
