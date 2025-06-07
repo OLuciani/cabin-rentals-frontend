@@ -3,6 +3,7 @@ import DateFilter from "../features/availability/components/DateFilter";
 import Image from "next/image";
 import axios, { AxiosResponse } from "axios";
 import { useEffect } from "react";
+import Link from "next/link";
 
 
 export default function Home() {
@@ -10,7 +11,7 @@ export default function Home() {
     const probarConexion = async () => {
       try {
         const response: AxiosResponse<{ ok: boolean; message: string }> =
-        await axios.get("http://localhost:5000/api/ping");
+        await axios.get("/api-proxy/api/ping");
         console.log("✅ Respuesta del backend:", response.data);
       } catch (error) {
         console.error("❌ Error al conectar con el backend:", error);
@@ -39,9 +40,11 @@ export default function Home() {
             <p className="text-lg sm:text-xl">
               Descubre nuestras acogedoras cabañas en la naturaleza.
             </p>
-            <button className="mt-6 bg-accent dark:bg-darkAccent hover:bg-darkAccent dark:hover:bg-accent text-white font-bold py-2 px-4 rounded">
-              Ver Cabañas
-            </button>
+            <Link href="/cabins">
+              <button className="mt-6 bg-accent dark:bg-darkAccent hover:bg-darkAccent dark:hover:bg-accent text-white font-bold py-2 px-4 rounded">
+                Ver Cabañas
+              </button>
+            </Link>
           </div>
         </div>
       </section>
@@ -98,7 +101,6 @@ export default function Home() {
           </div>
         </div>
       </section>
-
     </div>
   );
 }

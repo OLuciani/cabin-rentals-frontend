@@ -1,13 +1,11 @@
-
 import { Inter, Merriweather } from 'next/font/google';
 import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/layouts/NavBar";
 import Footer from "@/layouts/Footer";
-import SessionInitializer from '@/components/sessionInitializer/SessionInitializer';
-
 import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
+import SessionInitializer from '@/components/sessionInitializer/SessionInitializer';
 
 
 // Configuración de fuentes
@@ -37,9 +35,9 @@ export default function RootLayout({
     <html lang="es">
       <head />
       <body className={`${inter.variable} ${merriweather.variable} flex flex-col min-h-screen`}>
-        <NavBar />
 
-        <SessionInitializer /> {/* 👈 Se monta una vez al inicio */}
+        <SessionInitializer />
+        <NavBar />
 
         <ToastContainer
           position="top-right"

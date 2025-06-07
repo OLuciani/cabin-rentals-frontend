@@ -7,10 +7,12 @@
 
 /* Custom styles */
 html, body {
-  height: 100%;  /* Asegura que el html y body ocupen todo el alto */
+  height: 100%;
+  /* Asegura que el html y body ocupen todo el alto */
   margin: 0;
   padding: 0;
-  overflow-x: hidden; /* Evitar desbordamiento horizontal */
+  overflow-x: hidden;
+  /* Evitar desbordamiento horizontal */
 }
 
 body {
@@ -18,32 +20,38 @@ body {
   flex-direction: column;
   width: 100vw;
   box-sizing: border-box;
-  background-color: #F5F5F5; /* Fondo base */
-  color: #000000; /* Texto oscuro por defecto */
+  background-color: #F5F5F5;
+  /* Fondo base */
+  color: #000000;
+  /* Texto oscuro por defecto */
 }
 
 /* Estilos para el modo oscuro */
 .dark html {
-  background-color: #2D3748; /* Fondo oscuro */
+  background-color: #2D3748;
+  /* Fondo oscuro */
 }
 
 .dark body {
-  background-color: #2D3748; /* Fondo oscuro */
-  color: #f7fafc; /* Texto claro en modo oscuro */
+  background-color: #2D3748;
+  /* Fondo oscuro */
+  color: #f7fafc;
+  /* Texto claro en modo oscuro */
 }
 
 main {
-  flex-grow: 1;  /* Hace que el main ocupe el espacio restante */
-  overflow-x: hidden; /* Evitar desbordamiento horizontal en el main */
+  flex-grow: 1;
+  /* Hace que el main ocupe el espacio restante */
+  overflow-x: hidden;
+  /* Evitar desbordamiento horizontal en el main */
 }
 
 /* Esta configuración es para forzar el fondo blanco y el color de texto negro 
    en inputs, textareas y selects que el navegador completa automáticamente (autofill), 
    ya que algunos navegadores aplican un fondo celeste por defecto. */
-   input:-webkit-autofill,
-   textarea:-webkit-autofill,
-   select:-webkit-autofill {
-     box-shadow: 0 0 0 1000px white inset !important;
-     -webkit-text-fill-color: black !important;
-   }
-
+input:-webkit-autofill,
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+  box-shadow: 0 0 0 1000px white inset !important;
+  -webkit-text-fill-color: black !important;
+}

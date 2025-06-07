@@ -92,8 +92,8 @@ const CabinsPage = () => {
 export default CabinsPage; */
 
 
-
-"use client";
+// Esta es la que funcionaba perfecto antes de intentar con el componente CabinsPageClient.tsx
+/* "use client";
 
 import Link from "next/link";
 import CabinCard from "../../features/cabins/components/CabinCard";
@@ -173,4 +173,18 @@ const CabinsPage = () => {
   );
 };
 
-export default CabinsPage;
+export default CabinsPage; */
+
+
+
+
+import { Suspense } from "react";
+import CabinsPageClient from "../../features/cabins/components/CabinsPageClient";
+
+export default function CabinsPage() {
+  return (
+    <Suspense fallback={<div className="p-4 text-center">Cargando cabañas...</div>}>
+      <CabinsPageClient />
+    </Suspense>
+  );
+}

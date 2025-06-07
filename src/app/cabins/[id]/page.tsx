@@ -173,6 +173,7 @@ import { useAuthStore } from "@/store/useAuthStore";
 import { Button } from "@mui/material";
 import LoginOrRegisterModal from "@/components/modals/LoginOrRegisterModal";
 
+
 const CabinDetailPage = () => {
   const searchParams = useSearchParams();
   const startDate = searchParams.get("startDate");

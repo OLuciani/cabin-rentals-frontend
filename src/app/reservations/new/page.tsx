@@ -317,7 +317,9 @@ export default function NewBookingPage() {
 }
  */
 
-"use client";
+
+// Este anadaba perfecto hasta que intento solucionar de no poder usar useParams() dentro de un componente cliente (con "use client")
+/* "use client";
 
 import { useSearchParams } from "next/navigation";
 import { useState, useEffect } from "react";
@@ -385,7 +387,7 @@ export default function NewBookingPage() {
       {error && <p className="text-red-600 text-center">{error}</p>}
       {feedback && <p className="text-green-600 text-center">{feedback}</p>}
 
-      {/* Datos del usuario */}
+      
       <div className="bg-gray-100 p-4 rounded mb-6 space-y-2">
         <h2 className="text-lg font-semibold mb-2">Tus datos</h2>
         <p>
@@ -399,7 +401,7 @@ export default function NewBookingPage() {
         </p>
       </div>
 
-      {/* Resumen de la reserva */}
+      
       <div className="bg-blue-50 p-4 rounded mb-6 space-y-2">
         <h2 className="text-lg font-semibold mb-2">Detalles de la reserva</h2>
         <p>
@@ -418,7 +420,7 @@ export default function NewBookingPage() {
         </p>
       </div>
 
-      {/* Formulario para elegir cantidad de huéspedes y enviar */}
+     
       <form onSubmit={handleSubmit} className="space-y-4">
         <div>
           <label className="block font-medium mb-1">
@@ -444,7 +446,7 @@ export default function NewBookingPage() {
         </div>
       </form>
 
-      {/* Modal de confirmación */}
+      
       <BookingSuccessModal
         open={isModalOpen}
         onClose={handleCloseModal}
@@ -456,4 +458,21 @@ export default function NewBookingPage() {
       />
     </div>
   );
-}
+} */
+
+
+
+import { Suspense } from "react";
+import NewBookingPageClient from "../../../features/reservations/new/components/NewBookingPageClient";
+
+
+
+const NewBookingPage = () => {
+  return (
+    <Suspense fallback={<div className="p-4 text-center">Cargando formulario...</div>}>
+      <NewBookingPageClient />
+    </Suspense>
+  );
+};
+
+export default NewBookingPage;
