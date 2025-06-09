@@ -23,15 +23,15 @@ export default function Home() {
   return (
     <div className="text-textPrimary dark:text-darkText pb-10">
       {/* Hero Section */}
-      <section className="relative w-screen h-[300px] sm:h-[400px] md:h-[475px] xxxl:h-[630px] overflow-hidden">
+      <section className="relative w-screen h-[300px] sm:h-[360px] md:h-[475px] xxxl:h-[630px] overflow-hidden">
         {/* Imagen para móviles (hasta md) */}
         <div className="absolute inset-0 md:hidden">
           <Image
             src="/images/img-portada-recort.png"
             alt="Cabaña en la naturaleza"
             fill
-            sizes="100vw"
-            className="object-cover object-center"
+            sizes="(max-width: 767px) 100vw"
+            className="object-cover object-left"
             priority
           />
         </div>
@@ -50,13 +50,16 @@ export default function Home() {
         </div>
 
         {/* Texto centrado encima de la imagen */}
-        <div className="absolute mt-16 sm:mt-0 inset-0 bg-opacity-40 flex items-center justify-center">
-          <div className="text-center text-white">
+        <div className="absolute mt-16 sm:mt-0 inset-0 bg-opacity-40 flex flex-col items-center justify-end mb-5 sm:mb-8">
+          <div className="text-center text-white flex flex-col items-center justify-center gap-3 sm:gap-10 md:gap-10 lg:gap-14">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
-              Escapa a la Tranquilidad
+              Escapá a la naturaleza
             </h2>
-            <p className="text-lg sm:text-xl">
+            {/* <p className="text-lg sm:text-xl">
               Descubre nuestras acogedoras cabañas en la naturaleza.
+            </p> */}
+            <p className="text-lg sm:text-xl">
+              Cabañas acogedoras en la naturaleza.
             </p>
             <Link href="/cabins">
               <button className="mt-6 bg-accent dark:bg-darkAccent hover:bg-darkAccent dark:hover:bg-accent text-white font-bold py-2 px-4 rounded">

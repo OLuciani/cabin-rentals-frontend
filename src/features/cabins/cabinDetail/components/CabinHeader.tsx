@@ -100,11 +100,10 @@ const CabinHeader: React.FC<CabinDetailProps> = ({ cabin, openModal, handleReser
               <Image
                 src={cabin.mainImage}
                 alt={cabin.name}
-                layout="responsive"
                 width={800}
                 height={500}
                 priority
-                className="rounded-lg transition-transform duration-500 group-hover:scale-105 object-cover"
+                className="w-full h-auto rounded-lg transition-transform duration-500 group-hover:scale-105 object-cover"
                 onClick={() => openModal && openModal(0)} // Abre el modal con la imagen principal
               />
             </div>

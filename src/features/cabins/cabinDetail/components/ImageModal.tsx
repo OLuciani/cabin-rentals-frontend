@@ -14,7 +14,7 @@ const ImageModal: React.FC<CabinDetailProps> = ({
   return (
     <>
       {isModalOpen && (
-        <div className="fixed inset-0 bg-black bg-opacity-70 z-50 flex items-center justify-center px-4 sm:px-6">
+        <div className="fixed inset-y-[-30px] inset-x-0 bg-black bg-opacity-70 z-50 flex items-center justify-center px-4 sm:px-6">
           <div className="relative bg-white p-5 sm:p-6 md:p-8 lg:p-12 rounded-2xl w-full max-w-4xl max-h-[90vh] flex items-center justify-center overflow-hidden">
             {/* Botón de cerrar */}
             <button
@@ -36,11 +36,12 @@ const ImageModal: React.FC<CabinDetailProps> = ({
 
             {/* Imagen */}
             {typeof currentImageIndex === "number" && images?.[currentImageIndex] && (
-              <div className="relative w-[300px] h-[200px] sm:w-[85%] md:w-[90%] lg:w-[95%] sm:h-[400px] rounded-xl overflow-hidden">
+              <div className="relative w-[300px] h-[200px] sm:w-[85%] md:w-[90%] lg:w-[95%] sm:h-[50vh] md:h-[60vh] lg:h-[70vh] rounded-xl overflow-hidden">
                 <Image
                   src={images[currentImageIndex]}
                   alt={`Imagen ${currentImageIndex + 1}`}
                   fill
+                  sizes="full"
                   className="object-cover"
                 />
               </div>
