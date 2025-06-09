@@ -1,17 +1,16 @@
-"use client"
+"use client";
 import DateFilter from "../features/availability/components/DateFilter";
 import Image from "next/image";
 import axios, { AxiosResponse } from "axios";
 import { useEffect } from "react";
 import Link from "next/link";
 
-
 export default function Home() {
   useEffect(() => {
     const probarConexion = async () => {
       try {
         const response: AxiosResponse<{ ok: boolean; message: string }> =
-        await axios.get("/api-proxy/api/ping");
+          await axios.get("/api-proxy/api/ping");
         console.log("✅ Respuesta del backend:", response.data);
       } catch (error) {
         console.error("❌ Error al conectar con el backend:", error);
@@ -24,15 +23,34 @@ export default function Home() {
   return (
     <div className="text-textPrimary dark:text-darkText pb-10">
       {/* Hero Section */}
-      <section className="relative h-[300px] sm:h-[400px] md:h-[530px] xxxl:h-[700px] overflow-hidden">
-        <Image
-          src="/images/img-cabaña-portada.jpg"
-          alt="Cabaña en la naturaleza"
-          fill
-          className="object-cover object-center"
-          priority
-        />
-        <div className="absolute mt-10 sm:mt-0 inset-0 bg-opacity-40 flex items-center justify-center">
+      <section className="relative w-screen h-[300px] sm:h-[400px] md:h-[475px] xxxl:h-[630px] overflow-hidden">
+        {/* Imagen para móviles (hasta md) */}
+        <div className="absolute inset-0 md:hidden">
+          <Image
+            src="/images/img-portada-recort.png"
+            alt="Cabaña en la naturaleza"
+            fill
+            sizes="100vw"
+            className="object-cover object-center"
+            priority
+          />
+        </div>
+
+        {/* Imagen para pantallas md en adelante */}
+        <div className="absolute inset-0 hidden md:block">
+          <Image
+            src="/images/img-cabaña-portada2.jpg"
+            alt="Cabaña en la naturaleza"
+            width={1920}
+            height={630}
+            sizes="100vw"
+            className="w-full h-full object-cover object-center"
+            priority
+          />
+        </div>
+
+        {/* Texto centrado encima de la imagen */}
+        <div className="absolute mt-16 sm:mt-0 inset-0 bg-opacity-40 flex items-center justify-center">
           <div className="text-center text-white">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               Escapa a la Tranquilidad
@@ -68,7 +86,9 @@ export default function Home() {
             />
             <div className="p-4">
               <h4 className="font-bold">Cabaña de la Pradera</h4>
-              <p className="text-sm">Ideal para conectarte con la naturaleza.</p>
+              <p className="text-sm">
+                Ideal para conectarte con la naturaleza.
+              </p>
             </div>
           </div>
           {/* Cabaña 2 */}
