@@ -518,8 +518,9 @@ const CabinCard = ({ cabin }: Props) => {
           src={cabin.mainImage}
           alt={cabin.name}
           fill
-          priority
           sizes="(max-width: 640px) 100vw, 350px"
+          placeholder="blur"
+          blurDataURL="/images/placeholder.jpg"
           className="object-cover transition-transform duration-500 group-hover:scale-105"
         />
       </div>

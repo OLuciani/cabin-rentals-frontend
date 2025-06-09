@@ -103,6 +103,7 @@ const CabinHeader: React.FC<CabinDetailProps> = ({ cabin, openModal, handleReser
                 layout="responsive"
                 width={800}
                 height={500}
+                priority
                 className="rounded-lg transition-transform duration-500 group-hover:scale-105 object-cover"
                 onClick={() => openModal && openModal(0)} // Abre el modal con la imagen principal
               />
