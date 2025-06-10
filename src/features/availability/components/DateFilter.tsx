@@ -40,7 +40,7 @@ const DateFilter = () => {
 
   return (
     <div className="w-full flex justify-center items-center">
-      <div className="w-full md:w-auto my-5 py-6 px-4 flex border-gray-200 border-[2px] flex-col md:flex-row items-center justify-center gap-4 bg-white dark:bg-gray-900 rounded-xl shadow-md relative">
+      <div className="w-full md:w-auto my-5 mx-4 md:mx-0 p-4 flex border-gray-200 border-[2px] flex-col md:flex-row items-center justify-center gap-4 bg-white dark:bg-gray-900 rounded-xl shadow-md relative">
         {/* Fecha */}
         <div className="flex flex-col w-full md:w-auto ">
           <label className="text-sm text-gray-700 dark:text-darkText mb-1 ml-1">

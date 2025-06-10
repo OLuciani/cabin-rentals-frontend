@@ -15,11 +15,11 @@ const ImageModal: React.FC<CabinDetailProps> = ({
     <>
       {isModalOpen && (
         <div className="fixed inset-y-[-30px] inset-x-0 bg-black bg-opacity-70 z-50 flex items-center justify-center px-4 sm:px-6">
-          <div className="relative bg-white p-5 sm:p-6 md:p-8 lg:p-12 rounded-2xl w-full max-w-4xl max-h-[90vh] flex items-center justify-center overflow-hidden">
+          <div className="relative bg-white p-5 sm:p-14 lg:p-12 rounded-2xl w-full max-w-4xl flex items-center justify-center overflow-hidden">
             {/* Botón de cerrar */}
             <button
               onClick={closeModal}
-              className="absolute top-2 sm:top-4 right-2 sm:right-4 text-gray-800 font-bold hover:text-red-500 z-50"
+              className="absolute text-sm xs:text-base sm:text-lg top-1.5 xs:top-2 sm:top-4 right-1.5 xs:right-2 sm:right-4 text-gray-800 font-bold hover:text-red-500 z-50"
               aria-label="Cerrar"
             >
               ✕
@@ -36,7 +36,7 @@ const ImageModal: React.FC<CabinDetailProps> = ({
 
             {/* Imagen */}
             {typeof currentImageIndex === "number" && images?.[currentImageIndex] && (
-              <div className="relative w-[300px] h-[200px] sm:w-[85%] md:w-[90%] lg:w-[95%] sm:h-[50vh] md:h-[60vh] lg:h-[70vh] rounded-xl overflow-hidden">
+              <div className="relative w-[300px] h-[200px] sm:w-[600px] md:w-[700px] xl:w-[750px] sm:h-[400px] md:h-[465px] xl:h-[500px] rounded-xl overflow-hidden">
                 <Image
                   src={images[currentImageIndex]}
                   alt={`Imagen ${currentImageIndex + 1}`}
