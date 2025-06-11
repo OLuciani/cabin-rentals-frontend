@@ -36,8 +36,7 @@ const ImageModal: React.FC<CabinDetailProps> = ({
 
             {/* Imagen */}
             {typeof currentImageIndex === "number" && images?.[currentImageIndex] && (
-              //<div className="relative w-[300px] h-[200px] sm:w-[600px] md:w-[700px] xl:w-[750px] sm:h-[400px] md:h-[465px] xl:h-[500px] rounded-xl overflow-hidden">
-              <div className="relative w-full max-w-[95vw] xl:max-w-[65vw] max-h-[80vh] aspect-video rounded-xl overflow-hidden">
+              <div className="relative w-full max-w-[95vw] xs:max-w-[85vw] xl:max-w-[65vw] max-h-[70vh] xl:max-h-[80vh] aspect-video rounded-xl overflow-hidden">
                 <Image
                   src={images[currentImageIndex]}
                   alt={`Imagen ${currentImageIndex + 1}`}
@@ -51,7 +50,7 @@ const ImageModal: React.FC<CabinDetailProps> = ({
             {/* Botón siguiente */}
             <button
               onClick={nextImage}
-              className="absolute right-[-1px] sm:right-1 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 hover:bg-opacity-80 rounded-full sm:p-2 z-50"
+              className="absolute right-[-1px] sm:right-1 top-1/2 transform -translate-y-1/2 text-white bg-black bg-opacity-50 hover:bg-opacity-80 rounded-full  sm:p-2 z-50"
               aria-label="Siguiente"
             >
               <ChevronRight size={24} />
