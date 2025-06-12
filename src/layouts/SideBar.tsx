@@ -48,7 +48,7 @@ export default function SideBar({
         <div className="flex items-center justify-end">
             <button
             onClick={onClose}
-            className="mb-6 text-white dark:text-darkText text-xl font-bold"
+            className="mb-6 text-white dark:text-darkText text-xl font-semibold"
             >
             ✕
             </button>
@@ -97,19 +97,21 @@ export default function SideBar({
 
             {isLoggedIn && user && (
               <li className="flex flex-col gap-2">
-                <div className="flex items-center gap-2 text-secondary dark:text-darkSecondary">
-                  <FiUser size={20} />
-                  <span>{user.name}</span>
+                <div className="flex flex-col gap-2 items-start bg-secondary dark:bg-darkSecondary text-gray-800 dark:text-gray-900 px-3 py-1 rounded text-lg font-semibold">
+                  <div className="flex flex-row items-center gap-2 ">
+                    <FiUser size={20} />
+                    <span className="">{user.name}</span>
+                  </div>
+                  <button
+                    onClick={async () => {
+                      await handleLogout();
+                      onClose();
+                    }}
+                    className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm transition duration-200"
+                  >
+                    Cerrar sesión
+                  </button>
                 </div>
-                <button
-                  onClick={async () => {
-                    await handleLogout();
-                    onClose();
-                  }}
-                  className="bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded text-sm transition duration-200"
-                >
-                  Cerrar sesión
-                </button>
               </li>
             )}
           </ul>
