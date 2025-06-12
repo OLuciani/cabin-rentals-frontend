@@ -48,7 +48,7 @@ export default function RootLayout({
           draggable
         />
         
-        <div className='flex-grow mt-16 flex flex-col'> {/* Agrego este div con mt-16 porque el NavBar es fixed con z-10 y tiene justamente una altura de h-16 */}
+        <div className='flex-grow mt-16 md:mt-20 flex flex-col'> {/* Agrego este div con mt-16 porque el NavBar es fixed con z-10 y tiene justamente una altura de h-16 */}
          {children}
         </div>
 

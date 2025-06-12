@@ -47,7 +47,7 @@ export default function NavBar() {
   const navLinks = [
     { href: "/", label: "Inicio" },
     { href: "/cabins", label: "Cabañas" },
-    { href: "/contacto", label: "Contacto" },
+    { href: "/contact", label: "Contacto" },
   ];
 
   console.log("NavBar render", { isLoggedIn, user, isLoadingUser });
