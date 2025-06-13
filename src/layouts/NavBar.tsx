@@ -68,18 +68,22 @@ export default function NavBar() {
                     ? pathname === "/"
                     : pathname.startsWith(link.href);
 
+                const baseClasses =
+                  "relative text-sm sm:text-base md:text-lg lg:text-xl transition duration-200 hover:text-secondary dark:hover:text-darkSecondary";
+
+                const activeText = isActive
+                  ? "text-secondary dark:text-darkSecondary"
+                  : "";
+
+                const activeAfter = isActive
+                  ? "after:absolute after:left-0 after:right-0 after:bottom-[-6px] after:mx-auto after:w-6 after:h-[2px] after:bg-secondary dark:after:bg-darkSecondary after:rounded-md"
+                  : "";
+
                 return (
                   <li key={link.href}>
                     <Link
                       href={link.href}
-                      className={`relative text-sm sm:text-base md:text-lg lg:text-xl transition duration-200 
-                      hover:text-secondary dark:hover:text-darkSecondary
-                      ${isActive ? "text-secondary dark:text-darkSecondary" : ""}
-                      ${
-                        isActive
-                          ? "after:absolute after:left-0 after:right-0 after:bottom-[-6px] after:mx-auto after:w-6 after:h-[2px] after:bg-secondary dark:after:bg-darkSecondary after:rounded-md"
-                          : ""
-                      }`}
+                      className={`${baseClasses} ${activeText} ${activeAfter}`}
                     >
                       {link.label}
                     </Link>
@@ -176,4 +180,3 @@ export default function NavBar() {
     </div>
   );
 }
-
