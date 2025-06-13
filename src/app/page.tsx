@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <div className="text-textPrimary dark:text-darkText pb-10">
       {/* Hero Section */}
-      <section className="relative w-screen h-[300px] sm:h-[360px] md:h-[475px] xl:h-[500px] xxxl:h-[680px] overflow-hidden">
+      <section className="relative w-screen h-[300px] sm:h-[360px] md:h-[475px] xl:h-[480px] xxxl:h-[660px] overflow-hidden">
         {/* Imagen para móviles (hasta md) */}
         <div className="absolute inset-0 lg:hidden">
           <Image
@@ -60,7 +60,7 @@ export default function Home() {
               Escapá a la naturaleza
             </h2>
             <p className="hidden lg:block text-2xl ">
-              Escogé tu cabaña ideal
+              Elegí tu cabaña ideal.
             </p>
             <Link href="/cabins">
               <button className="hidden lg:block mt-6 bg-accent dark:bg-darkAccent hover:bg-darkAccent dark:hover:bg-accent text-white font-bold py-2 px-4 rounded">

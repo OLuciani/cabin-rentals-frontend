@@ -16,9 +16,8 @@ html, body {
 }
 
 body {
-  display: flex;
-  flex-direction: column;
-  width: 100vw;
+  
+  width: 100%;
   box-sizing: border-box;
   background-color: #F5F5F5;
   /* Fondo base */

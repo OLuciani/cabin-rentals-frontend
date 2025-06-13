@@ -57,7 +57,7 @@ export default function NavBar() {
       {/* <header className="fixed w-full h-16 md:h-20 top-0 bg-primary dark:bg-darkPrimary shadow-md p-4 text-white dark:text-darkText font-semibold z-10 flex">
         <div className="container mx-auto flex items-center justify-between relative"> */}
       <header className="fixed w-full top-0 bg-primary dark:bg-darkPrimary shadow-md text-white dark:text-darkText z-10">
-        <div className="h-16 md:h-20 px-4 container mx-auto flex items-center justify-between">
+        <div className="h-16 max-h-16 md:h-20 md:max-h-20 px-4 container mx-auto flex items-center justify-between">
 
           <h1 className="text-xl md:text-2xl font-bold leading-none text-white dark:text-darkText">
             Cabañas Natura
