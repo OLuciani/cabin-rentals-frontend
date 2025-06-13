@@ -9,16 +9,14 @@ const config: Config = {
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   safelist: [
-    'after:absolute',
-    'after:left-0',
-    'after:right-0',
-    'after:bottom-[-6px]',
-    'after:mx-auto',
-    'after:w-6',
-    'after:h-[2px]',
-    'after:bg-secondary',
-    'after:bg-darkSecondary',
-    'after:rounded-md',
+    'relative',
+    {
+      pattern: /(after:absolute|after:left-0|after:right-0|after:bottom-\[-6px\]|after:mx-auto|after:w-6|after:h-\[2px\]|after:rounded-md)/,
+    },
+    {
+      pattern: /after:(bg-secondary|bg-darkSecondary)/,
+      variants: ['hover', 'dark'],
+    },
   ],
   darkMode: 'class',
   theme: {
