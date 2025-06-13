@@ -8,19 +8,6 @@ const config: Config = {
     './src/features/**/*.{js,ts,jsx,tsx,mdx}',
     './src/app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
-  safelist: [
-  "relative",
-  "after:absolute",
-  "after:left-0",
-  "after:right-0",
-  "after:bottom-[-6px]",
-  "after:mx-auto",
-  "after:w-6",
-  "after:h-[2px]",
-  "after:rounded-md",
-  "after:bg-secondary",
-  "dark:after:bg-darkSecondary",
-  ],
   darkMode: 'class',
   theme: {
     extend: {

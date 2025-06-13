@@ -62,34 +62,27 @@ export default function NavBar() {
 
           <nav className="hidden md:block">
             <ul className="flex space-x-4 lg:space-x-8 xl:space-x-12 2xl:space-x-16">
-              {navLinks.map((link) => {
-                const isActive =
-                  link.href === "/"
-                    ? pathname === "/"
-                    : pathname.startsWith(link.href);
-
-                const baseClasses =
-                  "relative text-sm sm:text-base md:text-lg lg:text-xl transition duration-200 hover:text-secondary dark:hover:text-darkSecondary";
-
-                const activeText = isActive
-                  ? "text-secondary dark:text-darkSecondary"
-                  : "";
-
-                const activeAfter = isActive
-                  ? "after:absolute after:left-0 after:right-0 after:bottom-[-6px] after:mx-auto after:w-6 after:h-[2px] after:bg-secondary dark:after:bg-darkSecondary after:rounded-md"
-                  : "";
-
-                return (
-                  <li key={link.href}>
-                    <Link
-                      href={link.href}
-                      className={`${baseClasses} ${activeText} ${activeAfter}`}
-                    >
-                      {link.label}
-                    </Link>
-                  </li>
-                );
-              })}
+              {navLinks.map((link) => (
+                <li key={link.href}>
+                  <Link
+                    href={link.href}
+                    className={`relative text-sm sm:text-base md:text-lg lg:text-xl transition duration-200 
+                  hover:text-secondary dark:hover:text-darkSecondary
+                  ${
+                    pathname === link.href
+                      ? "text-secondary dark:text-darkSecondary"
+                      : ""
+                  }
+                  ${
+                    pathname === link.href
+                      ? "after:absolute after:left-0 after:right-0 after:bottom-[-6px] after:mx-auto after:w-6 after:h-[2px] after:bg-secondary dark:after:bg-darkSecondary after:rounded-md"
+                      : ""
+                  }`}
+                  >
+                    {link.label}
+                  </Link>
+                </li>
+              ))}
 
               {isLoadingUser ? null : !isLoggedIn && !user ? (
                 <li className="relative">
