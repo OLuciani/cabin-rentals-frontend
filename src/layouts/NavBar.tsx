@@ -38,9 +38,11 @@ export default function NavBar() {
   }, [darkMode]);
 
   useEffect(() => {
-    const savedTheme = localStorage.getItem("theme");
-    if (savedTheme === "dark") {
-      setDarkMode(true);
+    if (typeof window !== "undefined") {
+      const savedTheme = localStorage.getItem("theme");
+      if (savedTheme === "dark") {
+        setDarkMode(true);
+      }
     }
   }, []);
 
@@ -50,11 +52,8 @@ export default function NavBar() {
     { href: "/contact", label: "Contacto" },
   ];
 
-  console.log("NavBar render", { isLoggedIn, user, isLoadingUser });
-
   return (
     <div>
-      {/* <header className="fixed w-full h-16 top-0 bg-primary dark:bg-darkPrimary shadow-md p-4 text-white dark:text-darkText z-10"> */}
       <header className="fixed w-full h-16 md:h-20 top-0 bg-primary dark:bg-darkPrimary shadow-md p-4 text-white dark:text-darkText font-semibold z-10 flex">
         <div className="container mx-auto flex items-center justify-between relative">
           <h1 className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-bold text-white dark:text-darkText">
@@ -63,28 +62,6 @@ export default function NavBar() {
 
           <nav className="hidden md:block">
             <ul className="flex space-x-4 lg:space-x-8 xl:space-x-12 2xl:space-x-16">
-              {/* {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={link.href}
-                    className={`relative text-sm sm:text-base md:text-lg lg:text-xl transition duration-200 
-                    hover:text-secondary dark:hover:text-darkSecondary
-                    ${
-                      pathname === link.href
-                        ? "text-secondary dark:text-darkSecondary"
-                        : ""
-                    }
-                    ${
-                      pathname === link.href
-                        ? "after:absolute after:left-0 after:right-0 after:bottom-[-6px] after:mx-auto after:w-6 after:h-[2px] after:bg-secondary dark:after:bg-darkSecondary after:rounded-md"
-                        : ""
-                    }`}
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))} */}
-
               {navLinks.map((link) => {
                 const isActive =
                   link.href === "/"
@@ -96,13 +73,13 @@ export default function NavBar() {
                     <Link
                       href={link.href}
                       className={`relative text-sm sm:text-base md:text-lg lg:text-xl transition duration-200 
-                    hover:text-secondary dark:hover:text-darkSecondary
-                    ${isActive ? "text-secondary dark:text-darkSecondary" : ""}
-                    ${
-                      isActive
-                        ? "after:absolute after:left-0 after:right-0 after:bottom-[-6px] after:mx-auto after:w-6 after:h-[2px] after:bg-secondary dark:after:bg-darkSecondary after:rounded-md"
-                        : ""
-                    }`}
+                      hover:text-secondary dark:hover:text-darkSecondary
+                      ${isActive ? "text-secondary dark:text-darkSecondary" : ""}
+                      ${
+                        isActive
+                          ? "after:absolute after:left-0 after:right-0 after:bottom-[-6px] after:mx-auto after:w-6 after:h-[2px] after:bg-secondary dark:after:bg-darkSecondary after:rounded-md"
+                          : ""
+                      }`}
                     >
                       {link.label}
                     </Link>
@@ -199,3 +176,4 @@ export default function NavBar() {
     </div>
   );
 }
+
