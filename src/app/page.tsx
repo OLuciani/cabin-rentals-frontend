@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <div className="text-textPrimary dark:text-darkText pb-10">
       {/* Hero Section */}
-      <section className="relative w-screen h-[300px] sm:h-[360px] md:h-[475px] xl:h-[480px] xxxl:h-[660px] overflow-hidden">
+      <section className="relative w-screen h-[300px] sm:h-[360px] md:h-[475px] xl:h-[550px] xxxl:h-[730px] overflow-hidden">
         {/* Imagen para móviles (hasta md) */}
         <div className="absolute inset-0 lg:hidden">
           <Image
@@ -50,9 +50,7 @@ export default function Home() {
         </div>
 
         {/* Texto centrado encima de la imagen */}
-        {/* <div className="absolute sm:mt-0 inset-0 bg-opacity-40 flex flex-col items-center justify-end mb-52 sm:mb-56 md:mb-80 lg:mb-8"> */}
-        <div className="absolute inset-0 bg-opacity-40 flex flex-col items-center justify-end pb-52 sm:pb-52 md:pb-72 lg:pb-20 xl:pb-16">
-
+        <div className="absolute sm:mt-0 inset-0 bg-opacity-40 flex flex-col items-center justify-end mb-52 sm:mb-56 md:mb-80 lg:mb-8">
           {/* <div className="text-center text-white flex flex-col items-center justify-center gap-3 sm:gap-11 md:gap-12 lg:gap-14 xl:gap-16"> */}
           <div className="text-center text-white/90 flex flex-col items-center justify-center gap-3 sm:gap-11 md:gap-12 lg:gap-24 xl:gap-28 xxxl:gap-40">
 
