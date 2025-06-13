@@ -123,17 +123,16 @@ export default function NavBar() {
               ) : (
                 isLoggedIn &&
                 user && (
-                  <li className="flex items-center gap-2 bg-secondary dark:bg-darkSecondary text-gray-800 dark:text-gray-900 px-2 py-1 rounded max-w-[200px] overflow-hidden">
-  <FiUser size={20} />
-  <p className="hidden md:block text-sm truncate">{user.name}</p>
-  <button
-    onClick={handleLogout}
-    className="text-xs bg-red-500 hover:bg-red-600 text-white px-2 py-1 rounded"
-  >
-    Cerrar sesión
-  </button>
-</li>
-
+                  <li className="flex gap-2 items-center bg-secondary dark:bg-darkSecondary text-gray-800 dark:text-gray-900 px-3 py-1 rounded">
+                    <FiUser size={22} />
+                    <p className="hidden md:block md:text-lg">{user.name}</p>
+                    <button
+                      onClick={handleLogout}
+                      className="ml-2 text-sm bg-red-500 hover:bg-red-600 text-white px-3 py-1 rounded transition duration-200"
+                    >
+                      Cerrar sesión
+                    </button>
+                  </li>
                 )
               )}
             </ul>

@@ -60,7 +60,7 @@ export default function Home() {
               Escapá a la naturaleza
             </h2>
             <p className="hidden lg:block text-2xl ">
-              Elegí tu cabaña ideal.
+              Escogé tu cabaña ideal
             </p>
             <Link href="/cabins">
               <button className="hidden lg:block mt-6 bg-accent dark:bg-darkAccent hover:bg-darkAccent dark:hover:bg-accent text-white font-bold py-2 px-4 rounded">
