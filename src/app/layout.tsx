@@ -1,24 +1,23 @@
-import { Inter, Merriweather } from 'next/font/google';
+import { Inter, Merriweather } from "next/font/google";
 import type { Metadata } from "next";
 import "./globals.css";
 import NavBar from "@/layouts/NavBar";
 import Footer from "@/layouts/Footer";
-import { ToastContainer } from 'react-toastify';
-import 'react-toastify/dist/ReactToastify.css';
-import SessionInitializer from '@/components/sessionInitializer/SessionInitializer';
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+import SessionInitializer from "@/components/sessionInitializer/SessionInitializer";
 
 // Configuración de fuentes
 const inter = Inter({
-  subsets: ['latin'],
-  weight: ['400', '700'],  // Pesos normal (400) y negrita (700)
-  variable: '--font-inter', // Estableces la variable global para Inter
+  subsets: ["latin"],
+  weight: ["400", "700"], // Pesos normal (400) y negrita (700)
+  variable: "--font-inter", // Estableces la variable global para Inter
 });
 
 const merriweather = Merriweather({
-  subsets: ['latin'],
-  weight: ['400', '700'],  // Pesos normal y negrita
-  variable: '--font-merriweather', // Estableces la variable global para Merriweather
+  subsets: ["latin"],
+  weight: ["400", "700"], // Pesos normal y negrita
+  variable: "--font-merriweather", // Estableces la variable global para Merriweather
 });
 
 export const metadata: Metadata = {
@@ -34,8 +33,9 @@ export default function RootLayout({
   return (
     <html lang="es">
       <head />
-      <body className={`${inter.variable} ${merriweather.variable} flex flex-col min-h-screen`}>
-
+      <body
+        className={`${inter.variable} ${merriweather.variable} flex flex-col min-h-screen`}
+      >
         <SessionInitializer />
         <NavBar />
 
@@ -47,9 +47,9 @@ export default function RootLayout({
           pauseOnHover
           draggable
         />
-        
-        <div className='flex-grow mt-16 flex flex-col'> {/* Agrego este div con mt-16 porque el NavBar es fixed con z-10 y tiene justamente una altura de h-16 */}
-         {children}
+
+        <div className="flex-grow pt-16 md:pt-[74px] flex flex-col">
+          <main className="flex-grow overflow-x-hidden">{children}</main>
         </div>
 
         <Footer />
@@ -57,4 +57,3 @@ export default function RootLayout({
     </html>
   );
 }
-  
