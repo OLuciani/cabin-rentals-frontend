@@ -55,3 +55,9 @@ select:-webkit-autofill {
   box-shadow: 0 0 0 1000px white inset !important;
   -webkit-text-fill-color: black !important;
 }
+
+@layer utilities {
+  .max-h-2-3-screen {
+    max-height: 66.666vh;
+  }
+}

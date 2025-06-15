@@ -23,45 +23,23 @@ export default function Home() {
   return (
     <div className="text-textPrimary dark:text-darkText pb-10">
       {/* Hero Section */}
-      <section className="relative w-screen h-[300px] sm:h-[360px] md:h-[475px] xl:h-[480px] xxxl:h-[660px] overflow-hidden">
-        {/* Imagen para móviles (hasta md) */}
-        <div className="absolute inset-0 lg:hidden">
+      <section className="relative w-screen h-[40vh] md:h-[66.666vh] overflow-hidden">
+        <div className="absolute inset-0 ">
           <Image
-            src="/images/image-portada-recort-bottom.png"
+            src="/images/img-portada.webp"
             alt="Cabaña en la naturaleza"
             fill
-            sizes="(max-width: 767px) 100vw"
-            className="object-cover object-left"
-            priority
-          />
-        </div>
-
-        {/* Imagen para pantallas md en adelante */}
-        <div className="absolute inset-0 hidden lg:block">
-          <Image
-            src="/images/image-portada-recort-bottom.png"
-            alt="Cabaña en la naturaleza"
-            width={1920}
-            height={630}
             sizes="100vw"
-            className="w-full h-full object-cover object-bottom"
-            priority
+            className="object-cover object-left-bottom"
           />
         </div>
 
-        {/* Texto centrado encima de la imagen */}
-        {/* <div className="absolute sm:mt-0 inset-0 bg-opacity-40 flex flex-col items-center justify-end mb-52 sm:mb-56 md:mb-80 lg:mb-8"> */}
-        <div className="absolute inset-0 bg-opacity-40 flex flex-col items-center justify-end pb-52 sm:pb-52 md:pb-72 lg:pb-20 xl:pb-16">
-
-          {/* <div className="text-center text-white flex flex-col items-center justify-center gap-3 sm:gap-11 md:gap-12 lg:gap-14 xl:gap-16"> */}
-          <div className="text-center text-white/90 flex flex-col items-center justify-center gap-3 sm:gap-11 md:gap-12 lg:gap-24 xl:gap-28 xxxl:gap-40">
-
+        <div className="absolute inset-0 bg-opacity-40 flex flex-col items-center justify-end pb-40 md:pb-64 lg:pb-10 ">
+          <div className="text-center text-white/90 flex flex-col items-center justify-center md:gap-14 xl:gap-24 ">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4">
               Escapá a la naturaleza
             </h2>
-            <p className="hidden lg:block text-2xl ">
-              Elegí tu cabaña ideal.
-            </p>
+            <p className="hidden lg:block text-2xl ">Elegí tu cabaña ideal.</p>
             <Link href="/cabins">
               <button className="hidden lg:block mt-6 bg-accent dark:bg-darkAccent hover:bg-darkAccent dark:hover:bg-accent text-white font-bold py-2 px-4 rounded">
                 Ver cabañas
@@ -128,4 +106,3 @@ export default function Home() {
     </div>
   );
 }
-
