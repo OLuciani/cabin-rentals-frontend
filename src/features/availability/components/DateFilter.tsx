@@ -119,7 +119,7 @@ const DateFilter = () => {
         </div>
 
         {/* Botón */}
-        <div className="w-full md:w-auto pt-[24px]">
+        <div className="w-full md:w-auto md:pt-[24px]">
           <button
             onClick={handleBuscar}
             className="w-full md:w-[100px] h-[44px] px-6 bg-blue-600 hover:bg-blue-700 text-white font-medium rounded-md transition-all duration-200 flex items-center justify-center"

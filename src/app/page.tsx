@@ -23,7 +23,7 @@ export default function Home() {
   return (
     <div className="text-textPrimary dark:text-darkText pb-10">
       {/* Hero Section */}
-      <section className="relative w-screen h-[40vh] md:h-[66.666vh] overflow-hidden">
+      <section className="relative w-screen aspect-[16/9] min-h-[250px] max-h-[66.666vh] overflow-hidden sm:aspect-[16/7] lg:aspect-auto lg:h-[66.666vh]">
         <div className="absolute inset-0 ">
           <Image
             src="/images/img-portada.webp"
