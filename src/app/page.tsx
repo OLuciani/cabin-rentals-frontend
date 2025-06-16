@@ -33,8 +33,8 @@ export default function Home() {
             className="object-cover object-left-bottom"
           />
         </div>
-        <div className="absolute inset-0 bg-opacity-40 flex flex-col items-center lg:justify-center">
-          <div className="text-center text-white/90 flex flex-col items-center justify-center gap-[5vh]  ">
+        <div className="absolute inset-0 bg-opacity-40 flex flex-col items-center justify-start pt-[4%] lg-pt-0 lg:justify-center">
+          <div className="text-center text-white/90 flex flex-col items-center justify-center gap-[5vh]">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4">
               Escapá a la naturaleza
             </h2>
