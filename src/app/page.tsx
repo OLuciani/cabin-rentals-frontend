@@ -34,14 +34,14 @@ export default function Home() {
           />
         </div>
 
-        <div className="absolute inset-0 bg-opacity-40 flex flex-col items-center justify-end pb-40 md:pb-64 lg:pb-10 ">
-          <div className="text-center text-white/90 flex flex-col items-center justify-center md:gap-14 xl:gap-24 ">
+        <div className="absolute inset-0 bg-opacity-40 flex flex-col items-center justify-end pb-64 md:pb-6 lg:pb-6 ">
+          <div className="text-center text-white/90 flex flex-col items-center justify-center md:gap-36   ">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4">
               Escapá a la naturaleza
             </h2>
-            <p className="hidden lg:block text-2xl ">Elegí tu cabaña ideal.</p>
+            <p className="hidden md:block text-2xl ">Elegí tu cabaña ideal.</p>
             <Link href="/cabins">
-              <button className="hidden lg:block mt-6 bg-accent dark:bg-darkAccent hover:bg-darkAccent dark:hover:bg-accent text-white font-bold py-2 px-4 rounded">
+              <button className="hidden md:block mt-6 bg-accent dark:bg-darkAccent hover:bg-darkAccent dark:hover:bg-accent text-white font-bold py-2 px-4 rounded">
                 Ver cabañas
               </button>
             </Link>
