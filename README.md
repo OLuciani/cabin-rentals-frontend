@@ -17,7 +17,8 @@ Aunque no cuenta con una interfaz visual, incluye una ruta pública /api/health 
 
 ---
 
-🛠️ Hosting y disponibilidad
+## ☁️ Hosting y disponibilidad
+
 El backend está desplegado en el plan gratuito de Render, que suspende la aplicación tras 15 minutos de inactividad para ahorrar recursos. Esto puede causar demoras de hasta un minuto en la primera solicitud después de un periodo de inactividad. Para minimizar este efecto, se ha configurado un servicio de monitoreo (como UptimeRobot) que realiza pings periódicos para mantener la API activa.
 
 El frontend está desplegado en el plan gratuito de Vercel, que ofrece despliegue rápido y escalabilidad automática, pero también puede presentar ciertas limitaciones propias de los planes gratuitos, como tiempos de arranque en frío en despliegues muy poco usados.
