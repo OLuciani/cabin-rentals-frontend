@@ -58,7 +58,7 @@ const LoginForm = () => {
   };
 
   return (
-    <div className="bg-white text-textPrimary p-6 rounded-xl shadow-md w-full max-w-md">
+    <div className="w-full bg-white text-textPrimary p-6 rounded-xl shadow-md max-w-md border-[1px] border-gray-200">
       <h2 className="text-2xl font-semibold mb-4 text-center">Iniciar sesión</h2>
 
       <Formik

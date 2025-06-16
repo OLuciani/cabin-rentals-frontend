@@ -4,6 +4,26 @@ Este es el frontend del proyecto web de alquiler de cabañas, desarrollado con [
 
 ---
 
+## 🌐 Proyecto desplegado
+
+La aplicación ya se encuentra desplegada y disponible para su uso:
+
+- 🔗 **Frontend en producción**: [https://cabin-rentals-frontend.vercel.app](https://cabin-rentals-frontend.vercel.app)
+
+- ⚙️ **Backend en producción (API)**: [https://cabin-rentals-backend.onrender.com/api/health](https://cabin-rentals-backend.onrender.com/api/health)
+
+🛠️ El backend está desplegado en Render y funciona como una API REST que da soporte al frontend.
+Aunque no cuenta con una interfaz visual, incluye una ruta pública /api/health que permite verificar rápidamente que la API está activa y en funcionamiento.
+
+---
+
+🛠️ Hosting y disponibilidad
+El backend está desplegado en el plan gratuito de Render, que suspende la aplicación tras 15 minutos de inactividad para ahorrar recursos. Esto puede causar demoras de hasta un minuto en la primera solicitud después de un periodo de inactividad. Para minimizar este efecto, se ha configurado un servicio de monitoreo (como UptimeRobot) que realiza pings periódicos para mantener la API activa.
+
+El frontend está desplegado en el plan gratuito de Vercel, que ofrece despliegue rápido y escalabilidad automática, pero también puede presentar ciertas limitaciones propias de los planes gratuitos, como tiempos de arranque en frío en despliegues muy poco usados.
+
+---
+
 ## 🚀 Inicio rápido
 
 1. Cloná el repositorio:
