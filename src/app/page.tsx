@@ -35,7 +35,7 @@ export default function Home() {
         </div>
 
         <div className="absolute inset-0 bg-opacity-40 flex flex-col items-center justify-end pb-64 md:pb-6 lg:pb-6 ">
-          <div className="text-center text-white/90 flex flex-col items-center justify-center md:gap-36   ">
+          <div className="text-center text-white/90 flex flex-col items-center justify-center md:gap-28 xxxl:gap-36  ">
             <h2 className="text-3xl sm:text-4xl md:text-5xl font-semibold mb-4">
               Escapá a la naturaleza
             </h2>
