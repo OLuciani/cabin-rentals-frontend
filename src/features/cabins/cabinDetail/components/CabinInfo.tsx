@@ -1,3 +1,9 @@
+// Componente `CabinInfo`
+//
+// Muestra información detallada de la cabaña: precio, capacidad, habitaciones, baños y servicios específicos
+// como asador, cochera o pileta. También incluye una lista de comodidades adicionales si están disponibles.
+// Este componente es parte del feature `cabins/cabinDetail` y se utiliza en la página de detalle de cabaña.
+
 import React from "react";
 import { CabinDetailProps } from "../types/cabinDetailTypes";
 

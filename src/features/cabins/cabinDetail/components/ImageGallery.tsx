@@ -1,3 +1,10 @@
+// Galería de imágenes de una cabaña seleccionada.
+//
+// Este componente muestra una cuadrícula con las imágenes adicionales de una cabaña en particular.
+// Al hacer clic en una imagen, se ejecuta la función `openModal` (recibida como prop)
+// para abrir el visor modal con esa imagen ampliada.
+// Si la cabaña no tiene imágenes secundarias, no se muestra nada.
+
 import React from 'react';
 import { CabinDetailProps } from "../types/cabinDetailTypes";
 import Image from "next/image";

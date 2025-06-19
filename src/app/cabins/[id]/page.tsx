@@ -1,164 +1,14 @@
-/* "use client"; 
-
-import { useParams } from "next/navigation"; // Importa useParams de next/navigation
-import { useEffect, useState } from "react";
-import CabinDetail from "../../../components/CabinDetail"; // Ajusta la ruta si es necesario
-
-const CabinDetailPage = () => {
-  const { id } = useParams(); // Usamos useParams para obtener el parámetro de la URL
-  const [cabin, setCabin] = useState(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
-
-
-  useEffect(() => {
-    if (id) {
-      setLoading(true);
-      fetch(`http://localhost:5000/api/cabins/cabinDetail/${id}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setCabin(data);
-          setLoading(false);
-        })
-        .catch((err) => {
-            console.log(err)
-          setError(err);
-          setLoading(false);
-        });
-    }
-  }, [id]); // Este efecto solo se ejecutará cuando el id cambie
-
-  if (loading) {
-    return <p>Cargando detalles de la cabaña...</p>;
-  }
-
-  if (error) {
-    return <p>{error.message}</p>;
-  }
-
-  if (!cabin) {
-    return <p>La cabaña no se encuentra.</p>;
-  }
-
-  return <CabinDetail cabin={cabin} />;
-};
-
-export default CabinDetailPage; */
-
-//Esta es la que estaba andando perfecto sin el boton para comenzar una reserva
-/* "use client";
-
-import { useParams } from "next/navigation"; // Importa useParams de next/navigation
-import { useEffect, useState } from "react";
-import { getCabinDetail } from "@/features/cabins/cabinDetail/services/cabinService";
-import { Cabin } from "@/features/cabins/cabinDetail/types/cabinDetailTypes";
-import CabinHeader from "@/features/cabins/cabinDetail/components/CabinHeader";
-import CabinInfo from "@/features/cabins/cabinDetail/components/CabinInfo";
-import ImageGallery from "@/features/cabins/cabinDetail/components/ImageGallery";
-import ImageModal from "@/features/cabins/cabinDetail/components/ImageModal";
-import { CircularProgress } from "@mui/material";
-
-const CabinDetailPage = () => {
-  const { id } = useParams(); // Usamos useParams para obtener el parámetro de la URL
-  const [cabin, setCabin] = useState<Cabin | null>(null);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState<Error | null>(null);
-
-  const [isModalOpen, setIsModalOpen] = useState(false);
-  const [currentImageIndex, setCurrentImageIndex] = useState(0);
-  const images = cabin && [cabin.mainImage, ...cabin.images];
-
-  // Función para abrir el modal y poner la imagen actual
-  const openModal = (index: number) => {
-    setCurrentImageIndex(index);
-    setIsModalOpen(true);
-  };
-
-  // Función para cerrar el modal
-  const closeModal = () => setIsModalOpen(false);
-
-  // Función para navegar entre las imágenes en el modal (con ciclo)
-  const nextImage = () => {
-    if (images) {
-      setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length); // Ciclo a la primera imagen si es la última
-    }
-  };
-
-  const prevImage = () => {
-    if (images) {
-      setCurrentImageIndex(
-        (prevIndex) => (prevIndex - 1 + images.length) % images.length // Ciclo a la última imagen si es la primera
-      );
-    }
-  };
-
-  useEffect(() => {
-    if (id) {
-      const fetchCabin = async () => {
-        try {
-          const response = await getCabinDetail(id);
-          setCabin(response); // ya es de tipo CabinDetailProps
-          console.log("Cabaña recibida:", response);
-          setLoading(false);
-        } catch (error) {
-          console.error("Error cargando datos de la cabaña", error);
-
-          if (error instanceof Error) {
-            setError(error);
-          } else {
-            setError(new Error("Ocurrió un error desconocido"));
-          }
-
-          setLoading(false);
-        }
-      };
-
-      fetchCabin();
-    }
-  }, [id]);
-
-  if (loading)
-    return (
-      <div className="flex flex-col justify-center items-center h-64 space-y-4">
-        <p className="text-lg text-center">Esperando datos...</p>
-        <CircularProgress />
-      </div>
-    );
-
-  if (error) {
-    return <p>{error.message}</p>;
-  }
-
-  if (!cabin) {
-    return <p>La cabaña no se encuentra.</p>;
-  }
-
-  return (
-    <div className="max-w-4xl mx-auto my-2 sm:my-4 lg:my-6  bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-6 space-y-6">
-      <CabinHeader cabin={cabin} openModal={openModal} />
-      <CabinInfo cabin={cabin} />
-      <ImageGallery cabin={cabin} openModal={openModal} />
-      <ImageModal
-        isModalOpen={isModalOpen}
-        currentImageIndex={currentImageIndex}
-        images={images}
-        closeModal={closeModal}
-        prevImage={prevImage}
-        nextImage={nextImage}
-      />
-    </div>
-  );
-};
-
-export default CabinDetailPage; */
-
-
-
-
-
 "use client";
 
-import { useSearchParams, useParams } from "next/navigation"; // Importa useParams de next/navigation
+// Página de detalle de una cabaña específica.
+//
+// Esta vista obtiene el ID de la cabaña desde la URL, consulta su información desde el backend
+// y la muestra utilizando componentes modularizados: encabezado, información general e imágenes.
+//
+// Incluye una galería interactiva con modal, validación de sesión para realizar reservas,
+// y manejo de errores y carga inicial. Forma parte de la feature `cabins/cabinDetail`.
+
+import { useSearchParams, useParams } from "next/navigation"; 
 import { useEffect, useState } from "react";
 import { getCabinDetail } from "@/features/cabins/cabinDetail/services/cabinService";
 import { Cabin } from "@/features/cabins/cabinDetail/types/cabinDetailTypes";
@@ -175,41 +25,48 @@ import LoginOrRegisterModal from "@/components/modals/LoginOrRegisterModal";
 
 
 const CabinDetailPage = () => {
+  // Obtiene parámetros de búsqueda (por ejemplo, fechas de reserva)
   const searchParams = useSearchParams();
   const startDate = searchParams.get("startDate");
   const endDate = searchParams.get("endDate");
 
+  // Obtiene el ID de la cabaña desde la URL dinámica
   const { id } = useParams(); // Usamos useParams para obtener el parámetro de la URL
   const [cabin, setCabin] = useState<Cabin | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
 
+  // Estado del modal de imágenes
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
+
+  // Estado del modal de autenticación
   const [showAuthModal, setShowAuthModal] = useState(false);
 
+  // Arreglo de imágenes de la cabaña
   const images = cabin && [cabin.mainImage, ...cabin.images];
 
   const router = useRouter();
 
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
-  // Función para abrir el modal y poner la imagen actual
+  // Abre el modal de imágenes con la imagen seleccionada
   const openModal = (index: number) => {
     setCurrentImageIndex(index);
     setIsModalOpen(true);
   };
 
-  // Función para cerrar el modal
+  // Cierra el modal de imágenes
   const closeModal = () => setIsModalOpen(false);
 
-  // Función para navegar entre las imágenes en el modal (con ciclo)
+  // Imagen siguiente (cíclica)
   const nextImage = () => {
     if (images) {
       setCurrentImageIndex((prevIndex) => (prevIndex + 1) % images.length); // Ciclo a la primera imagen si es la última
     }
   };
 
+  // Imagen anterior (cíclica)
   const prevImage = () => {
     if (images) {
       setCurrentImageIndex(
@@ -218,6 +75,7 @@ const CabinDetailPage = () => {
     }
   };
 
+  // Fetch de la cabaña cuando se obtiene el ID
   useEffect(() => {
     if (id) {
       const fetchCabin = async () => {
@@ -243,6 +101,8 @@ const CabinDetailPage = () => {
     }
   }, [id]);
 
+  // Si el usuario está logueado, redirige a la página de reserva; si no, abre el modal para 
+  //que el usuario inicie sesión o cree una cuenta.
   const handleReserveClick = () => {
     if (isLoggedIn) {
       router.push(`/reservations/new?cabinId=${id}&startDate=${startDate}&endDate=${endDate}`);
@@ -251,6 +111,7 @@ const CabinDetailPage = () => {
     }
   };
 
+  // Estado de carga
   if (loading)
     return (
       <div className="flex flex-col justify-center items-center h-64 space-y-4">
@@ -259,19 +120,29 @@ const CabinDetailPage = () => {
       </div>
     );
 
+  // Estado de error
   if (error) {
     return <p>{error.message}</p>;
   }
 
+  // Si no existe la cabaña (por ID inválido)
   if (!cabin) {
     return <p>La cabaña no se encuentra.</p>;
   }
 
+  // Renderizado principal
   return (
     <div className="max-w-4xl mx-auto my-2 sm:my-4 md:my-8 lg:mt-12  bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-6 space-y-6">
+      {/* Encabezado de la cabaña: título, imagen principal, botón de reserva */}
       <CabinHeader cabin={cabin} openModal={openModal} handleReserveClick={handleReserveClick} />
+
+      {/* Información general de la cabaña */}
       <CabinInfo cabin={cabin} />
+
+      {/* Galería de imágenes */}
       <ImageGallery cabin={cabin} openModal={openModal} />
+
+      {/* Modal de galería ampliada con navegación */}
       <ImageModal
         isModalOpen={isModalOpen}
         currentImageIndex={currentImageIndex}
@@ -281,6 +152,7 @@ const CabinDetailPage = () => {
         nextImage={nextImage}
       />
 
+      {/* Botón de reserva fijo */}
       <div className="flex justify-center">
         <Button
           variant="contained"
@@ -292,6 +164,7 @@ const CabinDetailPage = () => {
         </Button>
       </div>
 
+      {/* Modal para login/registro si el usuario no está autenticado */}
       <LoginOrRegisterModal open={showAuthModal} onClose={() => setShowAuthModal(false)} />
     </div>
   );

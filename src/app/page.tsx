@@ -1,4 +1,12 @@
 "use client";
+
+// Página principal de la aplicación Cabin Rentals.
+//
+// Esta vista presenta una sección hero con imagen destacada, un componente para seleccionar fechas de disponibilidad
+// y una galería fija de cabañas destacadas como ejemplo visual. Además, prueba la conexión con el backend al cargarse.
+//
+// Esta es la única página no modularizada (por ahora) dentro de la arquitectura basada en funcionalidades (feature-based).
+
 import DateFilter from "../features/availability/components/DateFilter";
 import Image from "next/image";
 import axios, { AxiosResponse } from "axios";
@@ -7,6 +15,7 @@ import Link from "next/link";
 
 export default function Home() {
   useEffect(() => {
+    // Al cargar la página, se hace un "ping" al backend para verificar que esté operativo.
     const probarConexion = async () => {
       try {
         const response: AxiosResponse<{ ok: boolean; message: string }> =
@@ -22,7 +31,7 @@ export default function Home() {
 
   return (
     <div className="text-textPrimary dark:text-darkText pb-10">
-      {/* Hero Section */}
+      {/* Sección Hero con imagen de fondo y llamado a la acción */}
       <section className="relative w-screen aspect-[16/9] min-h-[250px] max-h-[66.666vh] overflow-hidden sm:aspect-[16/7] lg:aspect-auto lg:h-[66.666vh]">
         <div className="absolute inset-0 ">
           <Image
@@ -48,15 +57,16 @@ export default function Home() {
         </div>
       </section>
 
+      {/* Filtro de fechas de disponibilidad (componente modularizado) */}
       <DateFilter />
 
-      {/* Sección de Destacados */}
+      {/* Sección de Cabañas Destacadas (mock visual) */}
       <section className="container mx-auto pb-12 px-4">
         <h3 className="text-2xl font-bold mb-8 text-center">
           Nuestras Cabañas Destacadas
         </h3>
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Cabaña 1 */}
+          {/* Cabin Card 1 */}
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-lg overflow-hidden">
             <Image
               src="/images/cabaña-1.jpg"
@@ -72,7 +82,7 @@ export default function Home() {
               </p>
             </div>
           </div>
-          {/* Cabaña 2 */}
+          {/* Cabin Card 2 */}
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-lg overflow-hidden">
             <Image
               src="/images/cabaña-2.jpg"
@@ -86,7 +96,7 @@ export default function Home() {
               <p className="text-sm">Vistas increíbles del Cerro Blanco.</p>
             </div>
           </div>
-          {/* Cabaña 3 */}
+          {/* Cabin Card 3 */}
           <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-lg overflow-hidden">
             <Image
               src="/images/cabaña-3.jpg"

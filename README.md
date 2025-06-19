@@ -1,6 +1,6 @@
 # Frontend - Cabin Rentals Project 🏕️
 
-Este es el frontend del proyecto web de alquiler de cabañas, desarrollado con [Next.js](https://nextjs.org/) y [TypeScript](https://www.typescriptlang.org/).
+Este es el frontend del proyecto web de alquiler de cabañas, desarrollado con [Next.js](https://nextjs.org/) y [TypeScript](https://www.typescriptlang.org/) aplicando una arquitectura basada en capas y organizada por funcionalidades (feature-based).
 
 ---
 

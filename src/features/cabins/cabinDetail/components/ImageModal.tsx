@@ -1,3 +1,9 @@
+// Visor modal de imágenes para una cabaña seleccionada.
+//
+// Este componente muestra una imagen ampliada en una ventana modal con fondo oscurecido.
+// Se utiliza en la vista de detalle de una cabaña para permitir al usuario navegar entre imágenes.
+// Incluye botones para cerrar el modal, avanzar y retroceder entre las imágenes.
+
 import React from "react";
 import Image from "next/image";
 import { ChevronLeft, ChevronRight } from "lucide-react";
