@@ -81,7 +81,7 @@ const DashboardAppAdmin: React.FC = () => {
         style={{ maxHeight: "100vh" }} // 👈 evita que el main crezca más que la pantalla
       >
         <Suspense fallback={<div>Loading Content...</div>}>
-          <div className="pb-20 mt-2 xxs:mt-4 lg:mt-5">{renderSection()}</div>
+          <div className="pb-2 mt-2 xxs:mt-4 lg:mt-5">{renderSection()}</div>
         </Suspense>
       </main>
     </div>
