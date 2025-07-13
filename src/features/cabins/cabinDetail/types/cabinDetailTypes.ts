@@ -51,4 +51,7 @@ export interface Cabin {
 
     // Función para manejar clics en "Reservar"
     handleReserveClick?: () => void;
+
+    onEditClick?: () => void;
+
   }

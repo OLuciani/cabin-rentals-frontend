@@ -132,7 +132,7 @@ const CabinDetailPage = () => {
 
   // Renderizado principal
   return (
-    <div className="max-w-4xl mx-auto my-2 sm:my-4 md:my-8 lg:mt-12  bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-6 space-y-6">
+    <div className="max-w-4xl mx-auto my-2 sm:my-4 md:my-8 bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-6 space-y-6">
       {/* Encabezado de la cabaña: título, imagen principal, botón de reserva */}
       <CabinHeader cabin={cabin} openModal={openModal} handleReserveClick={handleReserveClick} />
 

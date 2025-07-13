@@ -7,20 +7,28 @@
 // Utilizado en listados de cabañas, como en la vista `CabinsPageClient`.
 
 import Image from "next/image";
-import { Cabin } from "../types/cabin";
+import { Cabin } from "../types/cabinBasic";
 import { useRouter } from "next/navigation";
 
 type Props = {
   cabin: Cabin;
+  onClick?: () => void; 
 };
 
-const CabinCard = ({ cabin }: Props) => {
+const CabinCard = ({ cabin, onClick }: Props) => {
   const router = useRouter();
 
   return (
     <div
       // Redirige a la página de detalle al hacer clic
-      onClick={() => router.push(`/cabins/${cabin._id}`)}
+      //onClick={() => router.push(`/cabins/${cabin._id}`)}
+      onClick={() => {
+        if (onClick) {
+          onClick(); // 👈 usá el callback si está definido
+        } else {
+          router.push(`/cabins/${cabin._id}`); // 👈 navegación por defecto
+        }
+      }}
       className="w-full xs:w-[350px] bg-white rounded-xl overflow-hidden relative cursor-pointer transition-shadow hover:shadow-md"
     >
       {/* Imágen principal de la cabaña */}

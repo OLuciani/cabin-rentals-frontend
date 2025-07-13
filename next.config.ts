@@ -41,6 +41,7 @@ const nextConfig: NextConfig = {
         hostname: 'res.cloudinary.com',
       },
     ],
+    domains: ['via.placeholder.com'],
   },
   async rewrites() {
     const backendUrl = process.env.NEXT_PUBLIC_API_URL;

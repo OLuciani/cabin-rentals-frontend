@@ -21,7 +21,7 @@ const ImageModal: React.FC<CabinDetailProps> = ({
     <>
       {isModalOpen && (
         <div className="fixed inset-y-[-30px] inset-x-0 bg-black bg-opacity-70 z-50 flex items-center justify-center px-2 sm:px-6">
-          <div className="relative bg-white p-6 sm:p-14 lg:p-12 rounded-2xl w-full max-w-[95vw] xxs:max-w-[65vw] lg:max-w-[75vw] xl:max-w-[75vw] flex items-center justify-center overflow-hidden">
+          <div className="relative bg-white p-6 rounded-2xl w-full max-w-[95vw] xxs:max-w-[65vw] lg:max-w-[75vw] xl:max-w-[75vw] flex items-center justify-center overflow-hidden">
             {/* Botón de cerrar */}
             <button
               onClick={closeModal}
@@ -41,17 +41,19 @@ const ImageModal: React.FC<CabinDetailProps> = ({
             </button>
 
             {/* Imagen */}
-            {typeof currentImageIndex === "number" && images?.[currentImageIndex] && (
-              <div className="relative w-full max-w-[95vw] xxs:max-w-[85vw] xl:max-w-[65vw] max-h-[70vh] xl:max-h-[80vh] aspect-video rounded-xl overflow-hidden">
-                <Image
-                  src={images[currentImageIndex]}
-                  alt={`Imagen ${currentImageIndex + 1}`}
-                  fill
-                  sizes="full"
-                  className="object-cover"
-                />
-              </div>
-            )}
+            {typeof currentImageIndex === "number" &&
+              images?.[currentImageIndex] && (
+                <div className="relative w-full max-w-[95vw] xxs:max-w-[85vw] xl:max-w-[65vw] max-h-[70vh] xl:max-h-[80vh] aspect-video rounded-xl overflow-hidden">
+                  <Image
+                    src={images[currentImageIndex]}
+                    alt={`Imagen ${currentImageIndex + 1}`}
+                    fill
+                    sizes="100vw"
+                    className="object-contain"
+                    style={{ backgroundColor: "white" }} // Opcional para fondo
+                  />
+                </div>
+              )}
 
             {/* Botón siguiente */}
             <button
@@ -69,4 +71,3 @@ const ImageModal: React.FC<CabinDetailProps> = ({
 };
 
 export default ImageModal;
-

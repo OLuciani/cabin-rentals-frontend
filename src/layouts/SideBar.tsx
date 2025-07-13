@@ -76,7 +76,7 @@ export default function SideBar({
               <>
                 <li>
                   <Link
-                    href="/login"
+                    href="/auth/login"
                     className="block text-lg hover:text-secondary dark:hover:text-darkSecondary"
                     onClick={onClose}
                   >
@@ -85,7 +85,7 @@ export default function SideBar({
                 </li>
                 <li>
                   <Link
-                    href="/register"
+                    href="/auth/register"
                     className="block text-lg hover:text-secondary dark:hover:text-darkSecondary"
                     onClick={onClose}
                   >

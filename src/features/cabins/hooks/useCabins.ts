@@ -17,7 +17,7 @@
 
 import { useEffect, useState } from "react";
 import { getCabins } from "../services/cabinService";
-import { Cabin } from "../types/cabin";
+import { Cabin } from "../types/cabinBasic";
 
 export const useCabins = (
   startDate?: string,

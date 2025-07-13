@@ -1,6 +1,6 @@
 "use client";
 import Link from "next/link";
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useState, useEffect } from "react";
 import { FaSun, FaMoon } from "react-icons/fa";
 import { FiUser } from "react-icons/fi";
@@ -14,10 +14,13 @@ export default function NavBar() {
 
   const { isLoggedIn, user, logout, isLoadingUser } = useAuthStore();
   const pathname = usePathname();
+  const router = useRouter();
+
 
   const handleLogout = async () => {
     try {
       await logout();
+      router.push("/"); // Al cerrar sesión se redirije al usuario a Inicio (Home)
     } catch (error) {
       console.error("Hubo un error al cerrar sesión", error);
     }
@@ -46,10 +49,19 @@ export default function NavBar() {
     }
   }, []);
 
+  /* const navLinks = [
+    { href: "/", label: "Inicio" },
+    { href: "/cabins", label: "Cabañas" },
+    { href: "/contact", label: "Contacto" },
+  ]; */
+
   const navLinks = [
     { href: "/", label: "Inicio" },
     { href: "/cabins", label: "Cabañas" },
     { href: "/contact", label: "Contacto" },
+    ...(user?.role === "admin"
+      ? [{ href: "/dashboardAppAdmin", label: "Admin" }]
+      : []),
   ];
 
   return (
@@ -58,7 +70,6 @@ export default function NavBar() {
         <div className="container mx-auto flex items-center justify-between relative"> */}
       <header className="fixed w-full top-0 bg-primary dark:bg-darkPrimary shadow-md text-white dark:text-darkText z-10">
         <div className="h-16 max-h-16 md:h-[74px] md:max-h-[74px] px-4 container mx-auto flex items-center justify-between">
-
           <h1 className="text-xl md:text-2xl font-bold leading-none text-white dark:text-darkText">
             Cabañas Natura
           </h1>
@@ -104,14 +115,14 @@ export default function NavBar() {
                   {showUserMenu && (
                     <div className="absolute right-0 mt-2 bg-white dark:bg-darkPrimary text-black dark:text-white shadow-md rounded w-40 z-50">
                       <Link
-                        href="/login"
+                        href="/auth/login"
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-darkSecondary"
                         onClick={() => setShowUserMenu(false)}
                       >
                         Iniciar sesión
                       </Link>
                       <Link
-                        href="/register"
+                        href="/auth/register"
                         className="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-darkSecondary"
                         onClick={() => setShowUserMenu(false)}
                       >
@@ -183,4 +194,3 @@ export default function NavBar() {
     </div>
   );
 }
-

@@ -8,24 +8,31 @@ import React from "react";
 import Image from "next/image";
 import { CabinDetailProps } from "../types/cabinDetailTypes";
 import { Button } from "@mui/material";
+import { useAuthStore } from "@/store/useAuthStore";
+import { usePathname } from "next/navigation";
 
 const CabinHeader: React.FC<CabinDetailProps> = ({
   cabin,
   openModal,
   handleReserveClick,
+  onEditClick,
 }) => {
+  const { user } = useAuthStore();
+
+  const pathname = usePathname();
+  const isInDashboard = pathname.startsWith("/dashboardAppAdmin");
+
   return (
     <div className="space-y-6">
       {cabin && (
         <>
-          {/* Imagen Principal */}
           <div className="flex justify-center">
             <div className="w-full sm:w-[70%] overflow-hidden rounded-lg cursor-pointer group">
               <Image
                 src={cabin.mainImage}
                 alt={cabin.name}
-                width={800}
-                height={500}
+                width={1000}
+                height={667}
                 priority
                 className="w-full h-auto rounded-lg transition-transform duration-500 group-hover:scale-105 object-cover"
                 onClick={() => openModal && openModal(0)} // Abre el modal con la imagen principal
@@ -33,24 +40,78 @@ const CabinHeader: React.FC<CabinDetailProps> = ({
             </div>
           </div>
 
-          {/* Botón para iniciar la reserva de una cabaña */}
-          <div className="flex justify-center">
-            <Button
-              variant="contained"
-              color="primary"
-              onClick={handleReserveClick}
-              className="mt-4"
-            >
-              Reservar esta cabaña
-            </Button>
+          {/*  <div className="w-full flex flex-col justify-center items-center md:flex-row md:justify-evenly ">
+            
+            <div className="">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleReserveClick}
+                className="w-64 mt-4"
+              >
+                Reservar esta cabaña
+              </Button>
+            </div>
+            
+          </div> */}
+
+          <div className="w-full flex flex-col justify-center items-center gap-4 md:flex-row md:flex-wrap md:justify-evenly">
+            {/* <div className="">
+              <Button
+                variant="contained"
+                color="primary"
+                onClick={handleReserveClick}
+                className="w-64 mt-4"
+              >
+                Reservar esta cabaña
+              </Button>
+            </div>  */}
+
+            {!isInDashboard && (
+              <div className="">
+                <Button
+                  variant="contained"
+                  color="primary"
+                  onClick={handleReserveClick}
+                  className="w-64 mt-4"
+                >
+                  Reservar esta cabaña
+                </Button>
+              </div>
+            )}
+
+            {user?.role === "admin" && (
+              <div className="">
+                <Button
+                  variant="contained"
+                  color="success"
+                  onClick={onEditClick}
+                  className="w-64 mt-4"
+                >
+                  Editar esta cabaña
+                </Button>
+              </div>
+            )}
+
+            {user?.role === "admin" && (
+              <div className="">
+                <Button
+                  variant="contained"
+                  color="warning"
+                  //onClick={}
+                  className="w-64 mt-4"
+                >
+                  Eliminar esta cabaña
+                </Button>
+              </div>
+            )}
           </div>
 
-          {/* Detalles de la cabaña */}
           <div className="text-center space-y-1">
             <h1 className="text-3xl font-bold text-gray-800 dark:text-gray-100">
               {cabin.name}
             </h1>
-            <p className="text-gray-500 text-sm dark:text-gray-400">
+            <p className="text-gray-500 font-semibold text-base dark:text-gray-400">
               {cabin.location}
             </p>
           </div>
