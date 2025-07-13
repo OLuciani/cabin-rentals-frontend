@@ -1,5 +1,18 @@
 'use client';
 
+/**
+ * Componente de formulario de inicio de sesión.
+ *
+ * Este componente renderiza un formulario validado con Formik y Yup
+ * que permite a los usuarios autenticarse con su email y contraseña.
+ *
+ * Al enviar el formulario, se consulta la API mediante `getUser`,
+ * y si la autenticación es exitosa, se guarda el usuario en el store Zustand
+ * y se redirige a la página principal.
+ *
+ * También se muestra manejo de errores, mensajes de validación y feedback visual.
+ */
+
 import { Formik, Form, Field, ErrorMessage, FormikHelpers } from 'formik';
 import * as Yup from 'yup';
 import { useState } from 'react';
@@ -47,9 +60,9 @@ const LoginForm = () => {
 
       toast.success("Has iniciado sesión correctamente");
 
-      /* setTimeout(() => {  */ 
+      setTimeout(() => {  
         router.push('/'); // redirige a página deseada
-      /* }, 2000); */
+      }, 3000); 
     } catch (error) {
         const err = error as AxiosError<{ message: string }>;
         const message = err.response?.data?.message || 'Error al iniciar sesión';
