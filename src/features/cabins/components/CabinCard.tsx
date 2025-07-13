@@ -21,15 +21,14 @@ const CabinCard = ({ cabin, onClick }: Props) => {
   return (
     <div
       // Redirige a la página de detalle al hacer clic
-      //onClick={() => router.push(`/cabins/${cabin._id}`)}
       onClick={() => {
         if (onClick) {
-          onClick(); // 👈 usá el callback si está definido
+          onClick(); // 👈 usa el callback si está definido
         } else {
           router.push(`/cabins/${cabin._id}`); // 👈 navegación por defecto
         }
       }}
-      className="w-full xs:w-[350px] bg-white rounded-xl overflow-hidden relative cursor-pointer transition-shadow hover:shadow-md"
+      className="w-full xs:w-[350px] bg-white rounded-xl shadow-md overflow-hidden relative cursor-pointer transition-shadow hover:shadow-lg"
     >
       {/* Imágen principal de la cabaña */}
       <div className="relative w-full h-[200px] sm:h-[250px] group">
