@@ -13,6 +13,7 @@ const DashboardAppAdmin: React.FC = () => {
   const [selectedCabinId, setSelectedCabinId] = useState<string | null>(null);
 
   useEffect(() => {
+    
     // Evita scroll global cuando se muestra el dashboard
     document.body.style.overflow = "hidden";
     document.documentElement.style.overflow = "hidden";
@@ -23,6 +24,11 @@ const DashboardAppAdmin: React.FC = () => {
       document.documentElement.style.overflow = "";
     };
   }, []);
+
+  useEffect(() => {
+    console.log("Valor de reduceheight: ", reduceheight);
+  }, [reduceheight])
+  
 
   const renderSection = () => {
     switch (section) {
@@ -75,13 +81,14 @@ const DashboardAppAdmin: React.FC = () => {
 
       {/* Main content con scroll interno */}
       <main
-        className={`flex-grow overflow-y-auto p-2 lg:p-6 bg-gray-100 ${
+        /* className={`flex-grow overflow-y-auto p-2 lg:p-6 bg-gray-100 ${
           reduceheight ? "pt-[57px]" : "pt-0"
-        } lg:pt-0`}
+        } lg:pt-0`} */
+        className={`flex-grow overflow-y-auto p-2 lg:p-6 bg-gray-100 lg:pt-0`}
         style={{ maxHeight: "100vh" }} // 👈 evita que el main crezca más que la pantalla
       >
         <Suspense fallback={<div>Loading Content...</div>}>
-          <div className="pb-20 mt-2 xxs:mt-4 lg:mt-5">{renderSection()}</div>
+          <div className="pb-28 mt-2 xxs:mt-4 lg:mt-5">{renderSection()}</div>
         </Suspense>
       </main>
     </div>

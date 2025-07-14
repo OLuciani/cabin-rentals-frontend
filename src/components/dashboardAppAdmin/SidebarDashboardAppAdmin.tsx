@@ -23,9 +23,9 @@ const SidebarDashboardAppAdmin: React.FC<SidebarDashboardAppAdminProps> = ({
   return (
     <div className="">
       <div
-        className={`w-full flex justify-between items-center pl-4 fixed bg-white top-[57] border-b-4 lg:border-b-0`}
+        className={`w-full flex justify-between items-center pl-4 relative bg-white top-[57] border-b-4 lg:border-b-0`}
       >
-        <span className="lg:hidden text-2xl font-semibold">
+        <span className="lg:hidden text-xl font-semibold">
           {user?.name}
         </span>
         
