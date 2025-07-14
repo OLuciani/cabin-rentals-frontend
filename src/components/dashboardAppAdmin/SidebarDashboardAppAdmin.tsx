@@ -7,12 +7,16 @@ import { useAuthStore } from "@/store/useAuthStore";
 interface SidebarDashboardAppAdminProps {
   setSection: (section: string) => void;
   section: string;
+  setReduceHeight: (reduceHeight: boolean) => void; //reduce el el espacio entre el Sidebar y renderSection en el dashboard cuando la pantalla es pequeña.
 }
 
 const SidebarDashboardAppAdmin: React.FC<SidebarDashboardAppAdminProps> = ({
   setSection,
   section,
+  setReduceHeight,
 }) => {
+  //const { userName, isLoggedIn } = useContext(Context);
+  //const [unreadCount, setUnreadCount] = useState(0);
   const { user } = useAuthStore();
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
 
@@ -32,6 +36,11 @@ const SidebarDashboardAppAdmin: React.FC<SidebarDashboardAppAdminProps> = ({
             const mainElement = document.querySelector("main");
             if (mainElement) {
               mainElement.scrollTo(0, 0);
+            }
+            if(isSidebarOpen) {
+              setReduceHeight(true)
+            } else {
+              setReduceHeight(false)
             }
           }}
           aria-label="Abrir menú"
@@ -63,6 +72,7 @@ const SidebarDashboardAppAdmin: React.FC<SidebarDashboardAppAdminProps> = ({
               onClick={() => {
                 setSection("createCabin");
                 setIsSidebarOpen(false);
+                setReduceHeight(true); //reduce el el espacio entre el Sidebar y renderSection en el dashboard cuando la pantalla es pequeña.
 
                 // Aquí debakp establezco el scroll del contenedor principal al inicio
                 const mainElement = document.querySelector("main");
@@ -79,6 +89,7 @@ const SidebarDashboardAppAdmin: React.FC<SidebarDashboardAppAdminProps> = ({
               onClick={() => {
                 setSection("cabinManagement");
                 setIsSidebarOpen(false);
+                setReduceHeight(true); //reduce el el espacio entre el Sidebar y renderSection en el dashboard cuando la pantalla es pequeña.
                 const mainElement = document.querySelector("main");
                 if (mainElement) {
                   mainElement.scrollTo(0, 0);
