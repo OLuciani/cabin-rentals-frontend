@@ -383,7 +383,7 @@ const CreateCabin: React.FC = () => {
   const { handleSubmit } = useCreateCabin(setImageCount);
 
   return (
-    <div className="w-full max-w-lg sm:max-w-xl mx-auto bg-white text-black p-4 rounded-xl shadow-md">
+    <div className="w-full max-w-lg sm:max-w-xl mx-auto bg-white text-black p-4 rounded-xl border-[1px] shadow-md">
       <h2 className="text-2xl font-semibold mb-6 text-center">
         Crear nueva cabaña
       </h2>
