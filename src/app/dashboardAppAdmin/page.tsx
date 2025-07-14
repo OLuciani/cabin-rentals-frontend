@@ -8,7 +8,6 @@ import CabinDetailDashboardPage from "../../features/cabins/components/CabinDeta
 import EditCabinDashboardPage from "@/features/cabins/components/EditCabinDashboardPage";
 
 const DashboardAppAdmin: React.FC = () => {
-  const [reduceheight, setReduceHeight] = useState<boolean>(true);
   const [section, setSection] = useState<string>("createCabin");
   const [selectedCabinId, setSelectedCabinId] = useState<string | null>(null);
 
@@ -24,12 +23,7 @@ const DashboardAppAdmin: React.FC = () => {
       document.documentElement.style.overflow = "";
     };
   }, []);
-
-  useEffect(() => {
-    console.log("Valor de reduceheight: ", reduceheight);
-  }, [reduceheight])
   
-
   const renderSection = () => {
     switch (section) {
       case "createCabin":
@@ -67,28 +61,23 @@ const DashboardAppAdmin: React.FC = () => {
   };
 
   return (
-    <div className="flex flex-col lg:flex-row h-screen overflow-hidden">
+    <div className="flex flex-col lg:flex-row h-screen">
       {/* Sidebar */}
       <div className="shrink-0">
         <Suspense fallback={<div>Loading Sidebar...</div>}>
           <SidebarDashboardAppAdmin
             setSection={setSection}
             section={section}
-            setReduceHeight={setReduceHeight}
           />
         </Suspense>
       </div>
 
       {/* Main content con scroll interno */}
       <main
-        /* className={`flex-grow overflow-y-auto p-2 lg:p-6 bg-gray-100 ${
-          reduceheight ? "pt-[57px]" : "pt-0"
-        } lg:pt-0`} */
-        className={`flex-grow overflow-y-auto p-2 lg:p-6 bg-gray-100 lg:pt-0`}
-        style={{ maxHeight: "100vh" }} // 👈 evita que el main crezca más que la pantalla
+        className={`flex-grow overflow-y-auto max-h-screen p-2 lg:p-6 bg-gray-100 lg:pt-0`}
       >
         <Suspense fallback={<div>Loading Content...</div>}>
-          <div className="pb-28 mt-2 xxs:mt-4 lg:mt-5">{renderSection()}</div>
+          <div className="pb-20 mt-2 xxs:mt-4 lg:mt-5 min-h-[150vh]">{renderSection()}</div>
         </Suspense>
       </main>
     </div>
