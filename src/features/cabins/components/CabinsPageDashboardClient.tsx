@@ -17,6 +17,7 @@ import { useCabins } from "@/features/cabins/hooks/useCabins";
 import { CircularProgress } from "@mui/material";
 import { useSearchParams } from "next/navigation";
 import DateFilter from "@/features/availability/components/DateFilter";
+import { useEffect } from "react";
 
 interface Props {
   onCabinClick?: (id: string) => void;
@@ -41,6 +42,18 @@ const CabinsPageDashboardClient: React.FC<Props> = ({ onCabinClick }) => {
   // Determina si mostrar el filtro de fechas en pantalla. Si el usuario utilizó el filtro de fechas
   // en el Home no renderiza el filtro en este componente.
   const showFilter = !startDate && !endDate && !guests && !rooms;
+
+  // Este useEffect asegura que el componente se muestre scrolleado al inicio cada vez que se monta en el dashboard src/dashboardAppAdmin/page.tsx.
+  useEffect(() => {
+    // Intentamos scroll en main y también en body/html por si acaso
+    const main = document.getElementById("dashboard-scroll-container");
+    if (main) {
+      main.scrollTop = 0;
+    }
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   const pageTitle = showFilter
     ? "Todas nuestras cabañas"

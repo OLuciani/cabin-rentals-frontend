@@ -324,12 +324,9 @@ const CreateCabinForm = () => {
 
 export default CreateCabinForm; */
 
-
-
-
 "use client";
 
-import React, { useState } from "react";
+import React, { useEffect, useState } from "react";
 import { Formik, Form, Field, ErrorMessage } from "formik";
 import * as Yup from "yup";
 
@@ -381,6 +378,18 @@ const CreateCabin: React.FC = () => {
   console.log(imageCount);
 
   const { handleSubmit } = useCreateCabin(setImageCount);
+
+  // Este useEffect asegura que el componente se muestre scrolleado al inicio cada vez que se monta en el dashboard src/dashboardAppAdmin/page.tsx.
+  useEffect(() => {
+    // Intentamos scroll en main y también en body/html por si acaso
+    const main = document.getElementById("dashboard-scroll-container");
+    if (main) {
+      main.scrollTop = 0;
+    }
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
 
   return (
     <div className="w-full max-w-lg sm:max-w-xl mx-auto bg-white text-black p-4 rounded-xl border-[1px] shadow-md">
@@ -584,7 +593,10 @@ const CreateCabin: React.FC = () => {
               <label className="block font-medium mb-2">Comodidades</label>
               <div className="flex flex-wrap gap-2">
                 {amenitiesOptions.map((amenity) => (
-                  <label key={amenity} className="text-sm flex items-center gap-1">
+                  <label
+                    key={amenity}
+                    className="text-sm flex items-center gap-1"
+                  >
                     <Field
                       type="checkbox"
                       name="amenities"

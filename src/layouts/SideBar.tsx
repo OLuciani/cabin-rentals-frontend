@@ -4,6 +4,8 @@ import { usePathname } from "next/navigation";
 import { useEffect } from "react";
 import { FiUser } from "react-icons/fi";
 import type { User } from "../types/User"; 
+import { useUIStore } from "../store/useUIStore";
+
 
 interface NavLink {
   href: string;
@@ -29,20 +31,25 @@ export default function SideBar({
 }: SideBarProps) {
   const pathname = usePathname();
 
+  const { openGeneralSidebar, closeGeneralSidebar } = useUIStore();
+
+
   useEffect(() => {
     if (isOpen) {
       document.body.style.overflow = "hidden";
+      openGeneralSidebar(); // ← Marca como abierto en Zustand
     } else {
       document.body.style.overflow = "";
+      closeGeneralSidebar(); // ← Marca como cerrado en Zustand
     }
-  }, [isOpen]);
+  }, [isOpen, openGeneralSidebar, closeGeneralSidebar]);
 
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black bg-opacity-50 z-40" onClick={onClose}>
+    <div className="fixed inset-0 bg-black bg-opacity-50 z-[9999]" onClick={onClose}>
       <div
-        className="fixed top-0 right-0 h-full w-1/2 sm:w-64 bg-primary dark:bg-darkPrimary text-white dark:text-darkText p-6 shadow-lg z-50"
+        className="fixed top-0 right-0 h-full w-3/4 sm:w-1/2 bg-primary dark:bg-darkPrimary text-white dark:text-darkText p-6 shadow-lg z-[9999]"
         onClick={(e) => e.stopPropagation()}
       >
         <div className="flex items-center justify-end">
