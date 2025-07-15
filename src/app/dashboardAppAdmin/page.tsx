@@ -67,7 +67,7 @@ const DashboardAppAdmin: React.FC = () => {
 
       {/* Main content */}
       <main 
-        className="flex-grow overflow-y-auto px-4 bg-gray-100 h-screen"
+        className="flex-grow overflow-y-auto px-4 bg-gray-100"
         id="dashboard-scroll-container"
       >
         <Suspense fallback={<div>Loading Content...</div>}>
