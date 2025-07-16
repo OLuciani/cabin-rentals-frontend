@@ -60,6 +60,9 @@ const SidebarDashboardAppAdmin: React.FC<SidebarDashboardAppAdminProps> = ({
             ? "fixed top-28 md:top-32  left-0 z-[60] h-auto"
             : "hidden lg:block"
         } 
+        ${
+          isGeneralSidebarOpen ? "hidden" : "block"
+        }
         lg:static lg:min-h-screen flex flex-col overflow-y-auto`}
       >
         <h1 className="text-2xl font-bold text-[#2C2C2C] text-center px-2 pt-4">
@@ -72,6 +75,10 @@ const SidebarDashboardAppAdmin: React.FC<SidebarDashboardAppAdminProps> = ({
           </h2>
           <div className="button-group flex flex-col gap-2">
             {" "}
+            {/* Para que al seleccionar una sección desde un botón esta siempre se muestre desde el inicio lo
+             configuro en cada componente de sección en un useEffect(tomar el componente de esta sección como
+             ejemplo para ver como  lo hace:src/app/features/cabins/components/createCabin.tsx). 
+            */}
             <button
               onClick={() => {
                 setSection("createCabin");
@@ -86,6 +93,7 @@ const SidebarDashboardAppAdmin: React.FC<SidebarDashboardAppAdminProps> = ({
             >
               Crear una cabaña
             </button>
+
             <button
               onClick={() => {
                 setSection("cabinManagement");

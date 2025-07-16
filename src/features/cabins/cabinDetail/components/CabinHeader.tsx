@@ -40,33 +40,7 @@ const CabinHeader: React.FC<CabinDetailProps> = ({
             </div>
           </div>
 
-          {/*  <div className="w-full flex flex-col justify-center items-center md:flex-row md:justify-evenly ">
-            
-            <div className="">
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleReserveClick}
-                className="w-64 mt-4"
-              >
-                Reservar esta cabaña
-              </Button>
-            </div>
-            
-          </div> */}
-
           <div className="w-full flex flex-col justify-center items-center gap-4 md:flex-row md:flex-wrap md:justify-evenly">
-            {/* <div className="">
-              <Button
-                variant="contained"
-                color="primary"
-                onClick={handleReserveClick}
-                className="w-64 mt-4"
-              >
-                Reservar esta cabaña
-              </Button>
-            </div>  */}
-
             {!isInDashboard && (
               <div className="">
                 <Button
@@ -80,30 +54,32 @@ const CabinHeader: React.FC<CabinDetailProps> = ({
               </div>
             )}
 
-            {user?.role === "admin" && (
-              <div className="">
-                <Button
-                  variant="contained"
-                  color="success"
-                  onClick={onEditClick}
-                  className="w-64 mt-4"
-                >
-                  Editar esta cabaña
-                </Button>
-              </div>
-            )}
-
-            {user?.role === "admin" && (
-              <div className="">
-                <Button
-                  variant="contained"
-                  color="warning"
-                  //onClick={}
-                  className="w-64 mt-4"
-                >
-                  Eliminar esta cabaña
-                </Button>
-              </div>
+            {/* Los botones para editar o eliminar una cabaña se renderizan solo si el usuario tiene el rol admin 
+            y si este componente se muestra desde el dashboard del administrador, desde Cabañas no lo renderiza */}
+            {user?.role === "admin" && isInDashboard && (
+              <>
+                <div className="">
+                  <Button
+                    variant="contained"
+                    color="success"
+                    onClick={onEditClick}
+                    className="w-64 mt-4"
+                  >
+                    Editar esta cabaña
+                  </Button>
+                </div>
+              
+                <div className="">
+                  <Button
+                    variant="contained"
+                    color="warning"
+                    //onClick={}
+                    className="w-64 mt-4"
+                  >
+                    Eliminar esta cabaña
+                  </Button>
+                </div>
+              </>
             )}
           </div>
 
