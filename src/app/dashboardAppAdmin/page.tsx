@@ -1,11 +1,11 @@
 "use client";
 
 import React, { Suspense, useEffect, useState } from "react";
-import CreateCabin from "@/features/cabins/components/CreateCabin";
+import CreateCabin from "@/features/cabins/dashboardAppAdmin/CreateCabin";
 import SidebarDashboardAppAdmin from "@/components/dashboardAppAdmin/SidebarDashboardAppAdmin";
-import CabinsDashboardPage from "../../features/cabins/components/CabinsPageDashboardClient";
-import CabinDetailDashboardPage from "../../features/cabins/components/CabinDetailForDashboard";
-import EditCabinDashboardPage from "@/features/cabins/components/EditCabinDashboardPage";
+import CabinsDashboardPage from "../../features/cabins/dashboardAppAdmin/CabinsPageDashboardClient";
+import CabinDetailDashboardPage from "../../features/cabins/dashboardAppAdmin/CabinDetailForDashboard";
+import EditCabinDashboardPage from "@/features/cabins/dashboardAppAdmin/EditCabinDashboardPage";
 
 const DashboardAppAdmin: React.FC = () => {
   const [reduceheight, setReduceHeight] = useState<boolean>(true);

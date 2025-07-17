@@ -92,6 +92,18 @@ const CabinDetailDashboardPage: React.FC<Props> = ({ cabinId, onEditClick }) => 
     }
   };
 
+  // Este useEffect asegura que el componente se muestre scrolleado al inicio cada vez que se monta en el dashboard src/dashboardAppAdmin/page.tsx.
+    useEffect(() => {
+      // Intentamos scroll en main y también en body/html por si acaso
+      const main = document.getElementById("dashboard-scroll-container");
+      if (main) {
+        main.scrollTop = 0;
+      }
+      document.documentElement.scrollTop = 0;
+      document.body.scrollTop = 0;
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }, []);
+
   if (loading)
     return (
       <div className="flex flex-col justify-center items-center h-64 space-y-4">
