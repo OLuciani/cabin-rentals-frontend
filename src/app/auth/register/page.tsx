@@ -7,7 +7,7 @@ import RegisterForm from '@/features/auth/register/components/RegisterForm';
 
 export default function RegisterPage() {
   return (
-    <main className="w-screen h-screen px-4 flex items-center justify-center">
+    <main className="w-screen h-auto py-6 px-4 flex items-start justify-center">
       <RegisterForm />
     </main>
   );

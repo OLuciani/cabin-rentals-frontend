@@ -61,3 +61,34 @@ select:-webkit-autofill {
     max-height: 66.666vh;
   }
 }
+
+/* Estilos de FullCalendar en modo oscuro */
+.dark .fc {
+  --fc-page-bg-color: #1a202c;
+  /* Fondo oscuro */
+  --fc-neutral-bg-color: #2d3748;
+  /* Celdas vacías */
+  --fc-border-color: #4a5568;
+  --fc-button-bg-color: #4a5568;
+  --fc-button-border-color: #4a5568;
+  --fc-button-hover-bg-color: #2c5282;
+  --fc-button-text-color: #e2e8f0;
+  --fc-today-bg-color: #2c528233;
+  --fc-event-bg-color: #5a7d5a;
+  /* Tu color "accent" */
+  --fc-event-text-color: #ffffff;
+  --fc-now-indicator-color: #e53e3e;
+}
+
+/*Evita que el autocompletado del navegador (Chrome) aplique fondo blanco y texto negro 
+  en inputs al usar modo oscuro. Esta regla fuerza el fondo y texto adecuados en modo dark.*/
+.dark input:-webkit-autofill,
+.dark textarea:-webkit-autofill,
+.dark select:-webkit-autofill {
+  -webkit-box-shadow: 0 0 0px 1000px #1f2937 inset !important;
+  /* bg-gray-800 */
+  -webkit-text-fill-color: #f9fafb !important;
+  /* text-white */
+  caret-color: #f9fafb;
+  transition: background-color 5000s ease-in-out 0s;
+}

@@ -8,7 +8,7 @@
 // Incluye una galería interactiva con modal, validación de sesión para realizar reservas,
 // y manejo de errores y carga inicial. Forma parte de la feature `cabins/cabinDetail`.
 
-import { useSearchParams, useParams } from "next/navigation"; 
+import { useSearchParams, useParams } from "next/navigation";
 import { useEffect, useState } from "react";
 import { getCabinDetail } from "@/features/cabins/cabinDetail/services/cabinService";
 import { Cabin } from "@/features/cabins/cabinDetail/types/cabinDetailTypes";
@@ -20,15 +20,17 @@ import { CircularProgress } from "@mui/material";
 
 import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/useAuthStore";
-import { Button } from "@mui/material";
+//import { Button } from "@mui/material";
 import LoginOrRegisterModal from "@/components/modals/LoginOrRegisterModal";
 
+//import { usePathname } from "next/navigation";
 
 const CabinDetailPage = () => {
   // Obtiene parámetros de búsqueda (por ejemplo, fechas de reserva)
   const searchParams = useSearchParams();
   const startDate = searchParams.get("startDate");
   const endDate = searchParams.get("endDate");
+  const guests = searchParams.get("guests");
 
   // Obtiene el ID de la cabaña desde la URL dinámica
   const { id } = useParams(); // Usamos useParams para obtener el parámetro de la URL
@@ -49,6 +51,10 @@ const CabinDetailPage = () => {
   const router = useRouter();
 
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+  //const { user } = useAuthStore();
+
+  //const pathname = usePathname();
+  //const isInDashboard = pathname.startsWith("/dashboardAppAdmin");
 
   // Abre el modal de imágenes con la imagen seleccionada
   const openModal = (index: number) => {
@@ -101,14 +107,20 @@ const CabinDetailPage = () => {
     }
   }, [id]);
 
-  // Si el usuario está logueado, redirige a la página de reserva; si no, abre el modal para 
+  // Si el usuario está logueado, redirige a la página de reserva; si no, abre el modal para
   //que el usuario inicie sesión o cree una cuenta.
   const handleReserveClick = () => {
     if (isLoggedIn) {
-      router.push(`/reservations/new?cabinId=${id}&startDate=${startDate}&endDate=${endDate}`);
+      router.push(
+        `/reservations/new?cabinId=${id}&startDate=${startDate}&endDate=${endDate}&cabinName=${cabin?.name}&guests=${guests}`
+      );
     } else {
       setShowAuthModal(true);
     }
+  };
+
+  const onBack = () => {
+    router.push("/cabins");
   };
 
   // Estado de carga
@@ -132,16 +144,29 @@ const CabinDetailPage = () => {
 
   // Renderizado principal
   return (
-    <div className="max-w-4xl mx-auto my-2 sm:my-4 md:my-8 bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-6 space-y-6">
-      {/* Encabezado de la cabaña: título, imagen principal, botón de reserva */}
-      <CabinHeader cabin={cabin} openModal={openModal} handleReserveClick={handleReserveClick} />
+    <div className="max-w-4xl mx-auto my-2 sm:my-4 md:my-8 bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-6 ">
+      <button
+        onClick={onBack}
+        className="text-sm md:text-base text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors mb-4"
+      >
+        ← Volver
+      </button>
 
-      {/* Información general de la cabaña */}
-      <CabinInfo cabin={cabin} />
+      <div className="space-y-4">
+        {/* Encabezado de la cabaña: título, imagen principal, botón de reserva */}
+        <CabinHeader
+          cabin={cabin}
+          openModal={openModal}
+          handleReserveClick={handleReserveClick}
+        />
 
-      {/* Galería de imágenes */}
-      <ImageGallery cabin={cabin} openModal={openModal} />
+        {/* Información general de la cabaña */}
+        <CabinInfo cabin={cabin} />
 
+        {/* Galería de imágenes */}
+        <ImageGallery cabin={cabin} openModal={openModal} />
+      </div>
+      
       {/* Modal de galería ampliada con navegación */}
       <ImageModal
         isModalOpen={isModalOpen}
@@ -153,19 +178,24 @@ const CabinDetailPage = () => {
       />
 
       {/* Botón de reserva fijo */}
-      <div className="flex justify-center">
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleReserveClick}
-          className="mt-4"
-        >
-          Reservar esta cabaña
-        </Button>
-      </div>
+      {/* {!isInDashboard && endDate && startDate && (
+        <div className="flex justify-center">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleReserveClick}
+            className="mt-4"
+          >
+            Reservar esta cabaña
+          </Button>
+        </div>
+      )} */}
 
       {/* Modal para login/registro si el usuario no está autenticado */}
-      <LoginOrRegisterModal open={showAuthModal} onClose={() => setShowAuthModal(false)} />
+      <LoginOrRegisterModal
+        open={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+      />
     </div>
   );
 };

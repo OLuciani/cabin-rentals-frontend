@@ -12,6 +12,10 @@
   "dependencies": {
     "@emotion/react": "^11.14.0",
     "@emotion/styled": "^11.14.0",
+    "@fullcalendar/core": "^6.1.18",
+    "@fullcalendar/daygrid": "^6.1.18",
+    "@fullcalendar/interaction": "^6.1.18",
+    "@fullcalendar/react": "^6.1.18",
     "@mui/material": "^7.0.2",
     "@next/bundle-analyzer": "^15.3.3",
     "@tailwindcss/line-clamp": "^0.4.4",
