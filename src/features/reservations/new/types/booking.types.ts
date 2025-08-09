@@ -1,6 +1,6 @@
 export interface BookingFormData {
-    cabin: string;
-    user: string;
+    cabinId: string;
+    userId: string;
     startDate: Date;
     endDate: Date;
     numberOfGuests: number;

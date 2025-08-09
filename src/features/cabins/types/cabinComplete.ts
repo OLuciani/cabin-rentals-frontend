@@ -27,23 +27,6 @@ export interface ICabin {
   updatedAt: string;
 }
 
-/* export type CabinFormData = Pick<
-  ICabin,
-  | "name"
-  | "description"
-  | "mainImage"
-  | "images"
-  | "pricePerNight"
-  | "maxGuests"
-  | "rooms"
-  | "bathrooms"
-  | "amenities"
-  | "hasGrill"
-  | "hasGarage"
-  | "hasSwimmingPool"
-  | "location"
->; */
-
 export type CabinFormData = {
   name: string;
   description: string;

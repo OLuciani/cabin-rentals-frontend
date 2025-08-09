@@ -1,4 +1,4 @@
-"use client";
+/* "use client";
 
 import { useSearchParams } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -13,14 +13,24 @@ import { useRouter } from "next/navigation";
 import { useAuthStore } from "@/store/useAuthStore";
 import LoginOrRegisterModal from "@/components/modals/LoginOrRegisterModal";
 import { usePathname } from "next/navigation";
+import { toast } from "react-toastify";
+import { useDeleteCabin } from "../dashboardAppAdmin/deleteCabin/hooks/useDeleteCabin";
+import DeleteCabinModal from "../dashboardAppAdmin/deleteCabin/components/DeleteCabinModal";
 
 // 👇 Ahora recibimos cabinId como prop
 interface Props {
   cabinId: string;
   onEditClick?: () => void;
+  onShowCalendar: () => void;
+  setSection: (section: string) => void;
 }
 
-const CabinDetailDashboardPage: React.FC<Props> = ({ cabinId, onEditClick }) => {
+const CabinDetailDashboardPage: React.FC<Props> = ({
+  cabinId,
+  onEditClick,
+  onShowCalendar,
+  setSection,
+}) => {
   const searchParams = useSearchParams();
   const startDate = searchParams.get("startDate");
   const endDate = searchParams.get("endDate");
@@ -36,6 +46,10 @@ const CabinDetailDashboardPage: React.FC<Props> = ({ cabinId, onEditClick }) => 
   const [currentImageIndex, setCurrentImageIndex] = useState(0);
   const [showAuthModal, setShowAuthModal] = useState(false);
   const router = useRouter();
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const { handleDelete } = useDeleteCabin();
+
   const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
 
   const images = cabin && [cabin.mainImage, ...cabin.images];
@@ -92,17 +106,37 @@ const CabinDetailDashboardPage: React.FC<Props> = ({ cabinId, onEditClick }) => 
     }
   };
 
+  const handleCreateBooking = () => {
+    setSection("createAdminBooking");
+  };
+
   // Este useEffect asegura que el componente se muestre scrolleado al inicio cada vez que se monta en el dashboard src/dashboardAppAdmin/page.tsx.
-    useEffect(() => {
-      // Intentamos scroll en main y también en body/html por si acaso
-      const main = document.getElementById("dashboard-scroll-container");
-      if (main) {
-        main.scrollTop = 0;
-      }
-      document.documentElement.scrollTop = 0;
-      document.body.scrollTop = 0;
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }, []);
+  useEffect(() => {
+    // Intentamos scroll en main y también en body/html por si acaso
+    const main = document.getElementById("dashboard-scroll-container");
+    if (main) {
+      main.scrollTop = 0;
+    }
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const handleDeleteCabinClick = () => {
+    setShowDeleteModal(true);
+  };
+
+  const handleConfirmDeleteCabin = async () => {
+    try {
+      await handleDelete(cabin!._id);
+      toast.success("Cabaña eliminada correctamente");
+      setShowDeleteModal(false);
+      setSection("allCabins"); // volvés al listado
+    } catch (err) {
+      console.log("Error al eliminar la cabaña: ", err);
+      toast.error("Error al eliminar la cabaña");
+    }
+  };
 
   if (loading)
     return (
@@ -117,12 +151,23 @@ const CabinDetailDashboardPage: React.FC<Props> = ({ cabinId, onEditClick }) => 
   if (!cabin) return <p>La cabaña no se encuentra.</p>;
 
   return (
-    <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 rounded-xl shadow-md overflow-hidden p-6 space-y-6">
+    <div className="max-w-4xl mx-auto bg-white dark:bg-gray-900 rounded-xl shadow-md overflow-hidden p-6 space-y-6">
+      
+      <button
+        onClick={() => setSection("cabinManagement")}
+        className="text-sm md:text-base text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+      >
+        ← Volver
+      </button>
+
       <CabinHeader
         cabin={cabin}
         openModal={openModal}
         handleReserveClick={handleReserveClick}
         onEditClick={onEditClick}
+        onShowCalendar={onShowCalendar}
+        onCreateBooking={handleCreateBooking}
+        onDeleteCabin={handleDeleteCabinClick}
       />
 
       <CabinInfo cabin={cabin} />
@@ -136,24 +181,225 @@ const CabinDetailDashboardPage: React.FC<Props> = ({ cabinId, onEditClick }) => 
         prevImage={prevImage}
         nextImage={nextImage}
       />
-       
+
       {!isInDashboard && (
-      <div className="flex justify-center">
-        <Button
-          variant="contained"
-          color="primary"
-          onClick={handleReserveClick}
-          className="mt-4"
-        >
-          Reservar esta cabaña
-        </Button>
-      </div>
+        <div className="flex justify-center">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleReserveClick}
+            className="mt-4"
+          >
+            Reservar esta cabaña
+          </Button>
+        </div>
       )}
 
       <LoginOrRegisterModal
         open={showAuthModal}
         onClose={() => setShowAuthModal(false)}
       />
+
+      {showDeleteModal && (
+        <DeleteCabinModal
+          isOpen={showDeleteModal}
+          onClose={() => setShowDeleteModal(false)}
+          onConfirm={handleConfirmDeleteCabin}
+          cabinName={cabin.name}
+        />
+      )}
+    </div>
+  );
+};
+
+export default CabinDetailDashboardPage;
+ */
+
+
+
+
+"use client";
+
+import { useSearchParams, usePathname, useRouter } from "next/navigation";
+import { useEffect, useState } from "react";
+import { getCabinDetail } from "../cabinDetail/services/cabinService";
+import { Cabin } from "../cabinDetail/types/cabinDetailTypes";
+import CabinHeader from "../cabinDetail/components/CabinHeader";
+import CabinInfo from "../cabinDetail/components/CabinInfo";
+import ImageGallery from "../cabinDetail/components/ImageGallery";
+import ImageModal from "../cabinDetail/components/ImageModal";
+import { CircularProgress, Button } from "@mui/material";
+import { useAuthStore } from "@/store/useAuthStore";
+import LoginOrRegisterModal from "@/components/modals/LoginOrRegisterModal";
+import { toast } from "react-toastify";
+import { useDeleteCabin } from "../dashboardAppAdmin/deleteCabin/hooks/useDeleteCabin";
+import DeleteCabinModal from "../dashboardAppAdmin/deleteCabin/components/DeleteCabinModal";
+
+interface Props {
+  cabinId: string;
+  onEditClick?: () => void;
+  onShowCalendar: () => void;
+  setSection: (section: string) => void;
+}
+
+const CabinDetailDashboardPage: React.FC<Props> = ({
+  cabinId,
+  onEditClick,
+  onShowCalendar,
+  setSection,
+}) => {
+  const searchParams = useSearchParams();
+  const startDate = searchParams.get("startDate");
+  const endDate = searchParams.get("endDate");
+  const pathname = usePathname();
+  const isInDashboard = pathname.startsWith("/dashboardAppAdmin");
+
+  const [cabin, setCabin] = useState<Cabin | null>(null);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState<Error | null>(null);
+  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
+  const [showAuthModal, setShowAuthModal] = useState(false);
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
+  const router = useRouter();
+  const { handleDelete } = useDeleteCabin();
+  const isLoggedIn = useAuthStore((state) => state.isLoggedIn);
+
+  const images = cabin && [cabin.mainImage, ...cabin.images];
+
+  useEffect(() => {
+    if (cabinId) {
+      const fetchCabin = async () => {
+        try {
+          const response = await getCabinDetail(cabinId);
+          setCabin(response);
+        } catch (error) {
+          setError(
+            error instanceof Error ? error : new Error("Ocurrió un error desconocido")
+          );
+        } finally {
+          setLoading(false);
+        }
+      };
+      fetchCabin();
+    }
+  }, [cabinId]);
+
+  useEffect(() => {
+    const main = document.getElementById("dashboard-scroll-container");
+    if (main) main.scrollTop = 0;
+    document.documentElement.scrollTop = 0;
+    document.body.scrollTop = 0;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }, []);
+
+  const openModal = (index: number) => {
+    setCurrentImageIndex(index);
+    setIsModalOpen(true);
+  };
+
+  const closeModal = () => setIsModalOpen(false);
+  const nextImage = () => {
+    if (images) setCurrentImageIndex((prev) => (prev + 1) % images.length);
+  };
+  const prevImage = () => {
+    if (images) setCurrentImageIndex((prev) => (prev - 1 + images.length) % images.length);
+  };
+
+  const handleReserveClick = () => {
+    if (isLoggedIn) {
+      router.push(`/reservations/new?cabinId=${cabinId}&startDate=${startDate}&endDate=${endDate}`);
+    } else {
+      setShowAuthModal(true);
+    }
+  };
+
+  const handleCreateBooking = () => setSection("createAdminBooking");
+  const handleDeleteCabinClick = () => setShowDeleteModal(true);
+
+  const handleConfirmDeleteCabin = async () => {
+    try {
+      await handleDelete(cabin!._id);
+      toast.success("Cabaña eliminada correctamente");
+      setShowDeleteModal(false);
+      setSection("allCabins");
+    } catch (err) {
+      console.log("Error al eliminar la cabaña: ", err)
+      toast.error("Error al eliminar la cabaña");
+    }
+  };
+
+  if (loading)
+    return (
+      <div className="flex flex-col justify-center items-center h-64 space-y-4">
+        <p className="text-lg text-center dark:text-white">Esperando datos...</p>
+        <CircularProgress />
+      </div>
+    );
+
+  if (error) return <p className="dark:text-white">{error.message}</p>;
+  if (!cabin) return <p className="dark:text-white">La cabaña no se encuentra.</p>;
+
+  return (
+    <div className="max-w-4xl mx-auto bg-white dark:bg-gray-800 text-black dark:text-white rounded-xl shadow-md overflow-hidden p-6 space-y-6">
+      {/* Botón Volver */}
+      <button
+        onClick={() => setSection("cabinManagement")}
+        className="text-sm md:text-base text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+      >
+        ← Volver
+      </button>
+
+      {/* Cabecera e info */}
+      <CabinHeader
+        cabin={cabin}
+        openModal={openModal}
+        handleReserveClick={handleReserveClick}
+        onEditClick={onEditClick}
+        onShowCalendar={onShowCalendar}
+        onCreateBooking={handleCreateBooking}
+        onDeleteCabin={handleDeleteCabinClick}
+      />
+
+      <CabinInfo cabin={cabin} />
+      <ImageGallery cabin={cabin} openModal={openModal} />
+
+      <ImageModal
+        isModalOpen={isModalOpen}
+        currentImageIndex={currentImageIndex}
+        images={images}
+        closeModal={closeModal}
+        prevImage={prevImage}
+        nextImage={nextImage}
+      />
+
+      {!isInDashboard && (
+        <div className="flex justify-center">
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleReserveClick}
+            className="mt-4"
+          >
+            Reservar esta cabaña
+          </Button>
+        </div>
+      )}
+
+      <LoginOrRegisterModal
+        open={showAuthModal}
+        onClose={() => setShowAuthModal(false)}
+      />
+
+      {showDeleteModal && (
+        <DeleteCabinModal
+          isOpen={showDeleteModal}
+          onClose={() => setShowDeleteModal(false)}
+          onConfirm={handleConfirmDeleteCabin}
+          cabinName={cabin.name}
+        />
+      )}
     </div>
   );
 };

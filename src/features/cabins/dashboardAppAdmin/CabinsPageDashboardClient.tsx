@@ -16,7 +16,7 @@ import CabinCard from "@/features/cabins/components/CabinCard";
 import { useCabins } from "@/features/cabins/hooks/useCabins";
 import { CircularProgress } from "@mui/material";
 import { useSearchParams } from "next/navigation";
-import DateFilter from "@/features/availability/components/DateFilter";
+//import DateFilter from "@/features/availability/components/DateFilter";
 import { useEffect } from "react";
 
 interface Props {
@@ -55,9 +55,9 @@ const CabinsPageDashboardClient: React.FC<Props> = ({ onCabinClick }) => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   }, []);
 
-  const pageTitle = showFilter
+  /* const pageTitle = showFilter
     ? "Todas nuestras cabañas"
-    : "Cabañas disponibles";
+    : "Cabañas disponibles"; */
 
   // Estado de carga
   if (loading)
@@ -72,24 +72,28 @@ const CabinsPageDashboardClient: React.FC<Props> = ({ onCabinClick }) => {
   if (error) return <p className="p-4 text-red-600">{error}</p>;
 
   return (
-    <div className="p-4 bg-white dark:bg-gray-800 rounded-xl shadow-md">
+    <div className="p-4 bg-gray-100 dark:bg-darkBackground rounded-xl shadow-md text-textPrimary dark:text-darkText">
       <h1
-        className={`text-3xl text-center font-bold ${
-          !showFilter ? "mb-6" : "mb-0"
+        className={`text-2xl md:text-3xl text-center font-bold ${
+          !showFilter ? "mb-6" : "mb-2"
         }`}
       >
-        {pageTitle}
+      {/* {pageTitle} */} Gestión de cabañas
       </h1>
 
+      <h2 className="text-base md:text-xl font-semibold text-center mb-4">
+        Selecciona una cabaña para administrarla
+      </h2>
+
       {/* Filtro de fechas solo si no hay filtros activos (si no se usó el filtro en el Home) */}
-      {showFilter && (
+      {/* {showFilter && (
         <div className="mb-3">
           <DateFilter />
         </div>
-      )}
+      )} */}
 
       {/* Lista de cabañas renderizadas en cards */}
-      <div className="w-full flex flex-row flex-wrap justify-center gap-6">
+      <div className="w-full flex flex-row flex-wrap justify-center gap-6 ">
         {cabins.map((cabin) => (
           <CabinCard
             key={cabin._id}

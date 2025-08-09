@@ -62,7 +62,7 @@ const LoginForm = () => {
 
       setTimeout(() => {  
         router.push('/'); // redirige a página deseada
-      }, 3000); 
+      }, 1000); 
     } catch (error) {
         const err = error as AxiosError<{ message: string }>;
         const message = err.response?.data?.message || 'Error al iniciar sesión';
@@ -70,7 +70,7 @@ const LoginForm = () => {
       }
   };
 
-  return (
+  /* return (
     <div className="w-full bg-white text-textPrimary p-6 rounded-xl shadow-md max-w-md border-[1px] border-gray-200">
       <h2 className="text-2xl font-semibold mb-4 text-center">Iniciar sesión</h2>
 
@@ -102,6 +102,65 @@ const LoginForm = () => {
             </button>
 
             {serverError && <div className="text-red-600 text-center mt-2">{serverError}</div>}
+          </Form>
+        )}
+      </Formik>
+    </div>
+  );
+};
+
+export default LoginForm; */
+return (
+    <div className="w-full bg-white dark:bg-gray-800 text-black dark:text-white p-6 rounded-xl shadow-md max-w-md border border-gray-200 dark:border-gray-700">
+      <h2 className="text-2xl font-semibold mb-4 text-center">Iniciar sesión</h2>
+
+      <Formik
+        initialValues={initialValues}
+        validationSchema={validationSchema}
+        onSubmit={handleSubmit}
+      >
+        {({ isSubmitting }) => (
+          <Form className="space-y-4">
+            {/* Email */}
+            <div>
+              <label htmlFor="email" className="block mb-1 text-sm font-medium">
+                Email
+              </label>
+              <Field
+                name="email"
+                type="email"
+                placeholder="Ingresá tu email"
+                className="w-full p-2 border border-gray-400 dark:border-gray-600 rounded-lg placeholder-gray-500 text-black dark:text-white bg-white dark:bg-gray-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-150 ease-in-out"
+              />
+              <ErrorMessage name="email" component="div" className="text-red-500 text-sm mt-1" />
+            </div>
+
+            {/* Contraseña */}
+            <div>
+              <label htmlFor="password" className="block mb-1 text-sm font-medium">
+                Contraseña
+              </label>
+              <Field
+                name="password"
+                type="password"
+                placeholder="Ingresá tu contraseña"
+                className="w-full p-2 border border-gray-400 dark:border-gray-600 rounded-lg placeholder-gray-500 text-black dark:text-white bg-white dark:bg-gray-800 focus:border-blue-500 focus:ring-1 focus:ring-blue-500 transition duration-150 ease-in-out"
+              />
+              <ErrorMessage name="password" component="div" className="text-red-500 text-sm mt-1" />
+            </div>
+
+            {/* Botón */}
+            <button
+              type="submit"
+              disabled={isSubmitting}
+              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md transition duration-200"
+            >
+              {isSubmitting ? 'Ingresando...' : 'Iniciar sesión'}
+            </button>
+
+            {serverError && (
+              <div className="text-red-600 text-center mt-2">{serverError}</div>
+            )}
           </Form>
         )}
       </Formik>

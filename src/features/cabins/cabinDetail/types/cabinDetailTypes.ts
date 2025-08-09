@@ -9,6 +9,7 @@
 // como reservar.
 
 export interface Cabin {
+    _id: string;
     name: string;                // Nombre de la cabaña
     description: string;         // Descripción detallada
     mainImage: string;           // URL de la imagen principal
@@ -54,4 +55,9 @@ export interface Cabin {
 
     onEditClick?: () => void;
 
+    onShowCalendar?: () => void; 
+
+    onCreateBooking?: () => void;
+
+    onDeleteCabin?: () => void;
   }
