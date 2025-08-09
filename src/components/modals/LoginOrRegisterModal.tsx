@@ -19,12 +19,12 @@ const LoginOrRegisterModal = ({ open, onClose }: AuthRequiredModalProps) => {
 
   const handleLogin = () => {
     onClose();
-    router.push("/login");
+    router.push("/auth/login");
   };
 
   const handleRegister = () => {
     onClose();
-    router.push("/register");
+    router.push("/auth/register");
   };
 
   return (

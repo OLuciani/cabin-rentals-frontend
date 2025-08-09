@@ -26,7 +26,7 @@ const SidebarDashboardAppAdmin: React.FC<SidebarDashboardAppAdminProps> = ({
       <div
         className={`${
           isGeneralSidebarOpen ? "relative z-0" : "fixed z-30"
-        } left-0 right-0 flex justify-between items-center pl-4 bg-white border-b-4 lg:static lg:border-b-0`}
+        } left-0 right-0  border-t-secondary border-t-4 flex justify-between items-center pl-4 bg-secondary dark:bg-darkSecondary text-textPrimary lg:static lg:border-b-0`}
       >
         <span className="lg:hidden text-xl font-semibold">{user?.name}</span>
 
@@ -47,30 +47,28 @@ const SidebarDashboardAppAdmin: React.FC<SidebarDashboardAppAdminProps> = ({
           title="Abrir menú"
         >
           {isSidebarOpen ? (
-            <AiOutlineClose size={25} aria-hidden="true" />
+            <AiOutlineClose size={20} aria-hidden="true" />
           ) : (
-            <AiOutlineMenu size={25} aria-hidden="true" />
+            <AiOutlineMenu size={20} aria-hidden="true" />
           )}
         </button>
       </div>
       <div
-        className={`bg-secondary text-[#2C2C2C] font-bold w-full lg:w-96
+        className={`bg-secondary dark:bg-darkSecondary text-[#2C2C2C] font-bold w-full lg:w-96
         ${
           isSidebarOpen
             ? "fixed top-28 md:top-32  left-0 z-[60] h-auto"
             : "hidden lg:block"
         } 
-        ${
-          isGeneralSidebarOpen ? "hidden" : "block"
-        }
+        ${isGeneralSidebarOpen ? "hidden" : "block"}
         lg:static lg:min-h-screen flex flex-col overflow-y-auto`}
       >
-        <h1 className="text-2xl font-bold text-[#2C2C2C] text-center px-2 pt-4">
+        <h1 className="hidden lg:block text-2xl font-bold text-[#2C2C2C] text-center px-2 pt-4">
           {user?.name}
         </h1>
 
         <nav className="flex-grow p-4">
-          <h2 className="text-lg text-center font-bold mt-6 mb-4">
+          <h2 className="text-lg text-center font-bold mb-4">
             ADMINISTRACION DE LA APP:
           </h2>
           <div className="button-group flex flex-col gap-2">
@@ -81,32 +79,47 @@ const SidebarDashboardAppAdmin: React.FC<SidebarDashboardAppAdminProps> = ({
             */}
             <button
               onClick={() => {
+                setSection("cabinManagement");
+                setIsSidebarOpen(false);
+                setReduceHeight(true); //reduce el el espacio entre el Sidebar y renderSection en el dashboard cuando la pantalla es pequeña.
+              }}
+              className={`block w-full text-left p-2 rounded transition-colors duration-300 hover:bg-primary hover:text-white dark:hover:bg-darkPrimary ${
+                section === "cabinManagement" || section === "cabinDetail" || section === "cabinCalendar" || section === "editCabin" || section === "createAdminBooking"
+                  ? "border-[2px] border-primary dark:border-darkPrimary"
+                  : "text-[#2C2C2C]"
+              }`}
+            >
+              Gestión de cabañas
+            </button>
+            
+            <button
+              onClick={() => {
                 setSection("createCabin");
                 setIsSidebarOpen(false);
                 setReduceHeight(true); //reduce el el espacio entre el Sidebar y renderSection en el dashboard cuando la pantalla es pequeña.
               }}
-              className={`block w-full text-left text p-2 rounded transition-colors duration-300 ease-in-out hover:bg-primary hover:text-white ${
+              className={`block w-full text-left p-2 rounded transition-colors duration-300 hover:bg-primary hover:text-white dark:hover:bg-darkPrimary ${
                 section === "createCabin"
-                  ? "border-[2px] border-[#2C2C2C] hover:border-primary"
+                  ? "border-[2px] border-primary dark:border-darkPrimary"
                   : "text-[#2C2C2C]"
               }`}
             >
               Crear una cabaña
             </button>
-
+            
             <button
               onClick={() => {
-                setSection("cabinManagement");
+                setSection("allBookings");
                 setIsSidebarOpen(false);
-                setReduceHeight(true); //reduce el el espacio entre el Sidebar y renderSection en el dashboard cuando la pantalla es pequeña.
+                setReduceHeight(true);
               }}
-              className={`block w-full text-left p-2 rounded transition-colors duration-300 ease-in-out hover:bg-primary hover:text-white ${
-                section === "cabinManagement"
-                  ? "border-[2px] border-[#2C2C2C] hover:border-primary"
+              className={`block w-full text-left p-2 rounded transition-colors duration-300 hover:bg-primary hover:text-white dark:hover:bg-darkPrimary ${
+                section === "allBookings" || section === "bookingDetail" || section === "editBooking"
+                  ? "border-[2px] border-primary dark:border-darkPrimary"
                   : "text-[#2C2C2C]"
               }`}
             >
-              Gestión de cabañas
+              Ver reservas
             </button>
           </div>
         </nav>
