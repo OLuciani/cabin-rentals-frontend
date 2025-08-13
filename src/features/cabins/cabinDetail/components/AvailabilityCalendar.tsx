@@ -1443,9 +1443,6 @@ const AvailabilityCalendar = ({
 
 export default AvailabilityCalendar; */
 
-
-
-
 //Este esta perfecto con todo funcionando bien. Falta lograr que no se muestren fechas reservadas anteriores al dia de hoy.
 /* "use client";
 
@@ -1748,10 +1745,6 @@ const AvailabilityCalendar = ({
 
 export default AvailabilityCalendar; */
 
-
-
-
-
 "use client";
 
 import React, { useState } from "react";
@@ -1809,12 +1802,12 @@ const AvailabilityCalendar = ({
   // Todas las fechas reservadas (sin incluir el día de salida) a partir de hoy
   const reservedDates = reservedRanges
     .flatMap(({ start, end }) => getDatesInRange(start, end))
-    .filter(date => date >= today);
+    .filter((date) => date >= today);
 
   // Días de entrada normalizados a partir de hoy
   const startDates = events
     .map(({ start }) => normalizeDate(start))
-    .filter(date => date >= today);
+    .filter((date) => date >= today);
 
   const [dateRange, setDateRange] = useState<Range>({
     startDate: new Date(),
@@ -1831,8 +1824,10 @@ const AvailabilityCalendar = ({
 
       const datesInSelectedRange = getDatesInRange(startNorm, endNorm);
 
-      const hasConflict = datesInSelectedRange.some(date =>
-        reservedDates.some(reservedDate => reservedDate.getTime() === date.getTime())
+      const hasConflict = datesInSelectedRange.some((date) =>
+        reservedDates.some(
+          (reservedDate) => reservedDate.getTime() === date.getTime()
+        )
       );
 
       if (hasConflict) {
@@ -1842,8 +1837,12 @@ const AvailabilityCalendar = ({
         return;
       }
 
-      const isEndDateReserved = reservedDates.some(d => d.getTime() === endNorm.getTime());
-      const isEndDateStartDate = startDates.some(d => d.getTime() === endNorm.getTime());
+      const isEndDateReserved = reservedDates.some(
+        (d) => d.getTime() === endNorm.getTime()
+      );
+      const isEndDateStartDate = startDates.some(
+        (d) => d.getTime() === endNorm.getTime()
+      );
 
       if (isEndDateReserved && !isEndDateStartDate) {
         alert(
@@ -1866,7 +1865,8 @@ const AvailabilityCalendar = ({
       setStartDate(start);
       setEndDate(end);
 
-      if (onDateRangeSelect) onDateRangeSelect(selection.startDate, selection.endDate);
+      if (onDateRangeSelect)
+        onDateRangeSelect(selection.startDate, selection.endDate);
       if (onDateRangeSetInUrl) onDateRangeSetInUrl(start, end);
     }
   };
@@ -1875,15 +1875,24 @@ const AvailabilityCalendar = ({
     const normDate = normalizeDate(date);
     const isPast = normDate < today;
 
-    const isReserved = reservedDates.some(d => d.getTime() === normDate.getTime());
-    const isStartDate = startDates.some(d => d.getTime() === normDate.getTime());
+    const isReserved = reservedDates.some(
+      (d) => d.getTime() === normDate.getTime()
+    );
+    const isStartDate = startDates.some(
+      (d) => d.getTime() === normDate.getTime()
+    );
 
     const previousDay = new Date(normDate);
     previousDay.setDate(previousDay.getDate() - 1);
-    const isPreviousDayReserved = reservedDates.some(d => d.getTime() === previousDay.getTime());
+    const isPreviousDayReserved = reservedDates.some(
+      (d) => d.getTime() === previousDay.getTime()
+    );
 
     const isSelected =
-      dateRange.startDate && dateRange.endDate && date >= dateRange.startDate && date <= dateRange.endDate;
+      dateRange.startDate &&
+      dateRange.endDate &&
+      date >= dateRange.startDate &&
+      date <= dateRange.endDate;
 
     const style: React.CSSProperties = {
       width: 36,
@@ -1895,7 +1904,13 @@ const AvailabilityCalendar = ({
       userSelect: "none",
       cursor: isPast ? "not-allowed" : "pointer",
       backgroundColor: isSelected ? "#c7d2fe" : undefined,
-      color: isPast ? "#9ca3af" : isReserved ? "#7f1d1d" : isSelected ? "#1e3a8a" : "#111827",
+      color: isPast
+        ? "#9ca3af"
+        : isReserved
+        ? "#7f1d1d"
+        : isSelected
+        ? "#1e3a8a"
+        : "#111827",
       fontWeight: isSelected ? "bold" : "normal",
       border: undefined,
       opacity: 1,
@@ -1939,14 +1954,17 @@ const AvailabilityCalendar = ({
         <>
           {dateRange.startDate &&
             dateRange.endDate &&
-            dateRange.startDate.toDateString() !== dateRange.endDate.toDateString() && (
+            dateRange.startDate.toDateString() !==
+              dateRange.endDate.toDateString() && (
               <div className="w-full flex flex-col space-y-4 border-[2px] p-4 rounded-lg">
                 <div className="flex flex-col space-y-2">
                   <p>
-                    <strong>Fecha de entrada:</strong> {dateRange.startDate?.toLocaleDateString()}
+                    <strong>Fecha de entrada:</strong>{" "}
+                    {dateRange.startDate?.toLocaleDateString()}
                   </p>
                   <p>
-                    <strong>Fecha de salida:</strong> {dateRange.endDate?.toLocaleDateString()}
+                    <strong>Fecha de salida:</strong>{" "}
+                    {dateRange.endDate?.toLocaleDateString()}
                   </p>
                 </div>
 
@@ -1981,50 +1999,64 @@ const AvailabilityCalendar = ({
             editableDateInputs={true}
             dayContentRenderer={dayContentRenderer}
           />
+
+          <div className="w-full flex flex-wrap gap-4 mt-2 items-center justify-start text-sm">
+            {/* Día disponible */}
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <div
+                style={{
+                  width: 24,
+                  height: 24,
+                  borderRadius: "50%",
+                  backgroundColor: "#ffffff",
+                  border: "1px solid #d1d5db", // gris clarito
+                }}
+              />
+              <span>Día disponible</span>
+            </div>
+
+            {/* Día de salida posible */}
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <div
+                style={{
+                  width: 24,
+                  height: 24,
+                  borderRadius: "50%",
+                  backgroundColor: "#fca5a5",
+                  border: "2px solid #2563eb",
+                }}
+              />
+              <span>Día de salida disponible</span>
+            </div>
+
+            {/* Día reservado normal */}
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <div
+                style={{
+                  width: 24,
+                  height: 24,
+                  borderRadius: "50%",
+                  backgroundColor: "#fca5a5",
+                }}
+              />
+              <span>Día reservado</span>
+            </div>
+
+            {/* Día seleccionado */}
+            <div className="flex items-center gap-2 w-full sm:w-auto">
+              <div
+                style={{
+                  width: 24,
+                  height: 24,
+                  borderRadius: "50%",
+                  backgroundColor: "#c7d2fe",
+                }}
+              />
+              <span>Día seleccionado</span>
+            </div>
+          </div>
         </>
       )}
-
-      <div className="w-full flex flex-wrap gap-4 mt-4 items-center justify-start text-sm">
-        {/* Día de salida posible */}
-        <div className="flex items-center gap-2 w-full sm:w-auto">
-          <div
-            style={{
-              width: 24,
-              height: 24,
-              borderRadius: "50%",
-              backgroundColor: "#fca5a5",
-              border: "2px solid #2563eb",
-            }}
-          />
-          <span>Día de salida disponible</span>
-        </div>
-
-        {/* Día reservado normal */}
-        <div className="flex items-center gap-2 w-full sm:w-auto">
-          <div
-            style={{
-              width: 24,
-              height: 24,
-              borderRadius: "50%",
-              backgroundColor: "#fca5a5",
-            }}
-          />
-          <span>Día reservado</span>
-        </div>
-
-        {/* Día seleccionado */}
-        <div className="flex items-center gap-2 w-full sm:w-auto">
-          <div
-            style={{
-              width: 24,
-              height: 24,
-              borderRadius: "50%",
-              backgroundColor: "#c7d2fe",
-            }}
-          />
-          <span>Día seleccionado</span>
-        </div>
-      </div>
     </div>
   );
 };
