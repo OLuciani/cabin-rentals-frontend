@@ -1745,6 +1745,7 @@ const AvailabilityCalendar = ({
 
 export default AvailabilityCalendar; */
 
+// Funciona todo perfectamente.
 "use client";
 
 import React, { useState } from "react";
@@ -1752,6 +1753,7 @@ import { DateRange, RangeKeyDict, Range } from "react-date-range";
 import { useCabinBookedDates } from "../../dashboardAppAdmin/cabinCalendar/hooks/useCabinBookedDates";
 import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
+import InvalidDateRangeModal from "@/components/modals/InvalidDateRangeModal";
 
 interface AvailabilityCalendarProps {
   cabinId: string;
@@ -1793,6 +1795,13 @@ const AvailabilityCalendar = ({
 
   const today = normalizeDate(new Date());
 
+  const [showInvalidDateRangeModal, setShowInvalidDateRangeModal] =
+    useState<boolean>(false);
+
+  const onClose = () => {
+    setShowInvalidDateRangeModal(false);
+  };
+
   // Fechas reservadas (rangos) y días de entrada
   const reservedRanges = events.map(({ start, end }) => ({
     start: normalizeDate(start),
@@ -1831,9 +1840,10 @@ const AvailabilityCalendar = ({
       );
 
       if (hasConflict) {
-        alert(
+        /* alert(
           "El rango seleccionado incluye días ya reservados. Por favor elige otro rango."
-        );
+        ); */
+        setShowInvalidDateRangeModal(true);
         return;
       }
 
@@ -2057,6 +2067,8 @@ const AvailabilityCalendar = ({
           </div>
         </>
       )}
+
+      {showInvalidDateRangeModal && <InvalidDateRangeModal onClose={onClose} />}
     </div>
   );
 };
