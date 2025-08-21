@@ -92,10 +92,10 @@ export default function NewBookingPage() {
   return (
     <div>
       {startDate && endDate ? (
-        <div className="w-full bg-white p-4 max-w-3xl mx-auto border border-gray-300 rounded-xl shadow-lg my-4">
+        <div className="w-full bg-white p-4 max-w-3xl mx-auto border border-gray-300 rounded-xl shadow-lg my-4 dark:text-primary">
           <button
             onClick={onBack}
-            className="text-sm md:text-base text-gray-700 dark:text-gray-300 hover:text-black dark:hover:text-white transition-colors"
+            className="text-sm md:text-base text-gray-700 hover:text-black"
           >
             ← Volver
           </button>

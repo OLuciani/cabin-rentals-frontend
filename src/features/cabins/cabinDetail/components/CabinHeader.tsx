@@ -122,13 +122,13 @@ const CabinHeader: React.FC<CabinDetailProps> = ({
                     Fechas seleccionadas:
                   </p>
                   <div>
-                    <p className="text-sm text-gray-600 mb-2">
+                    <p className="text-sm text-gray-600 dark:text-darkText mb-2">
                       Fecha de entrada:{" "}
                       <span className="font-semibold">
                         {new Date(startDate).toLocaleDateString()}
                       </span>
                     </p>
-                    <p className="text-sm text-gray-600 mb-2">
+                    <p className="text-sm text-gray-600 dark:text-darkText mb-2">
                       Fecha de salida:{" "}
                       <span className="font-semibold">
                         {new Date(endDate).toLocaleDateString()}
@@ -140,7 +140,7 @@ const CabinHeader: React.FC<CabinDetailProps> = ({
                   onClick={onBackOfBooking}
                   variant="contained"
                   color="inherit"
-                  className="w-64 mt-4"
+                  className="w-64 mt-4 dark:text-black"
                 >
                   BORRAR FECHAS
                 </Button>

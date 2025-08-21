@@ -94,7 +94,8 @@ const DashboardAppAdmin: React.FC = () => {
         );
 
       default:
-        return <CreateCabin />;
+        //return <CreateCabin />;
+        return <CabinsDashboardPage />;
     }
   };
 

@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import { AiOutlineMenu, AiOutlineClose } from "react-icons/ai";
-import { useAuthStore } from "@/store/useAuthStore";
+//import { useAuthStore } from "@/store/useAuthStore";
 import { useUIStore } from "../../store/useUIStore";
 
 interface SidebarDashboardAppAdminProps {
@@ -16,7 +16,7 @@ const SidebarDashboardAppAdmin: React.FC<SidebarDashboardAppAdminProps> = ({
   section,
   setReduceHeight,
 }) => {
-  const { user } = useAuthStore();
+  //const { user } = useAuthStore();
   const { isGeneralSidebarOpen } = useUIStore();
 
   const [isSidebarOpen, setIsSidebarOpen] = useState(false);
@@ -28,8 +28,8 @@ const SidebarDashboardAppAdmin: React.FC<SidebarDashboardAppAdminProps> = ({
           isGeneralSidebarOpen ? "relative z-0" : "fixed z-30"
         } left-0 right-0  border-t-secondary border-t-4 flex justify-between items-center pl-4 bg-secondary dark:bg-darkSecondary text-textPrimary lg:static lg:border-b-0`}
       >
-        <span className="lg:hidden text-xl font-semibold">{user?.name}</span>
-
+        <span className="text-lg font-semibold lg:m-auto lg:pt-4">PANEL ADMINISTRACION</span>
+        
         <button
           className="lg:hidden py-4 pr-4"
           onClick={() => {
@@ -63,14 +63,14 @@ const SidebarDashboardAppAdmin: React.FC<SidebarDashboardAppAdminProps> = ({
         ${isGeneralSidebarOpen ? "hidden" : "block"}
         lg:static lg:min-h-screen flex flex-col overflow-y-auto`}
       >
-        <h1 className="hidden lg:block text-2xl font-bold text-[#2C2C2C] text-center px-2 pt-4">
+        {/* <h1 className="hidden lg:block text-2xl font-bold text-[#2C2C2C] text-center px-2 pt-4">
           {user?.name}
-        </h1>
+        </h1> */}
 
         <nav className="flex-grow p-4">
-          <h2 className="text-lg text-center font-bold mb-4">
-            ADMINISTRACION DE LA APP:
-          </h2>
+          {/* <h2 className="text-lg text-center font-bold mb-4">
+            PANEL ADMINISTRACION
+          </h2> */}
           <div className="button-group flex flex-col gap-2">
             {" "}
             {/* Para que al seleccionar una sección desde un botón esta siempre se muestre desde el inicio lo
