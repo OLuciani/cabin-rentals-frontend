@@ -2,6 +2,8 @@
 
 Una aplicación web moderna y responsive para la reserva de cabañas, diseñada para ofrecer una experiencia de usuario fluida y segura. Construida con **[Next.js](https://nextjs.org/)** y **[TypeScript](https://www.typescriptlang.org/)**, aplicando una arquitectura escalable basada en funcionalidades (feature-based).
 
+![Demostración de la aplicación](https://github.com/OLuciani/cabin-rentals-frontend/blob/main/demo-reserva-12s.gif?raw=true)
+
 ---
 
 ## 🌐 Proyecto desplegado
