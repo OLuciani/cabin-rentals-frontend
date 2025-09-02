@@ -1,6 +1,6 @@
-# Frontend - Cabin Rentals Project 🏕️
+# Cabin Rentals - Frontend 🏕️
 
-Este es el frontend del proyecto web de alquiler de cabañas, desarrollado con [Next.js](https://nextjs.org/) y [TypeScript](https://www.typescriptlang.org/) aplicando una arquitectura basada en capas y organizada por funcionalidades (feature-based).
+Una aplicación web moderna y responsive para la reserva de cabañas, diseñada para ofrecer una experiencia de usuario fluida y segura. Construida con **[Next.js](https://nextjs.org/)** y **[TypeScript](https://www.typescriptlang.org/)**, aplicando una arquitectura escalable basada en funcionalidades (feature-based).
 
 ---
 
@@ -87,7 +87,38 @@ NEXT_PUBLIC_API_URL=http://localhost:5000
 * Persistencia de login y sincronización de datos con cookies
 * Componentes reutilizables y responsive
 * Buen manejo de errores y validaciones consistentes
+* Testing con **Jest** y **React Testing Library** para garantizar la calidad del código
 * Despliegue en servicios modernos (Vercel y Render) usando planes gratuitos
+
+---
+
+## 🧪 Testing
+
+Para garantizar la calidad y la fiabilidad de la aplicación, se ha implementado una estrategia de testing centrada en los flujos de usuario más críticos. Se utilizan **Jest** y **React Testing Library** para crear pruebas unitarias y de integración para los componentes clave.
+
+### Flujos Testeados
+
+Actualmente, el proyecto cuenta con tests para las siguientes funcionalidades esenciales:
+
+*   ✅ **Autenticación de Usuarios:** Pruebas para los formularios de **Registro** y **Login**, asegurando que las validaciones y el envío de datos funcionen correctamente.
+*   ✅ **Creación de Reservas (Cliente):** Se valida el flujo completo que un cliente sigue para crear una nueva reserva, garantizando una experiencia de usuario sin errores.
+*   ✅ **Creación de Reservas (Admin):** Se prueba la funcionalidad del panel de administrador para crear reservas manualmente, cubriendo los casos de uso internos.
+
+### Cómo Ejecutar los Tests
+
+Para correr la suite de pruebas completa, utilizá el siguiente comando:
+
+```bash
+npm test
+```
+
+Para ver un desglose detallado de cada test individual, podés usar el flag `--verbose`:
+
+```bash
+npm test -- --verbose
+```
+
+![Captura de Tests Pasando](https://github.com/OLuciani/cabin-rentals-frontend/blob/main/tests-passed.png?raw=true)
 
 ---
 

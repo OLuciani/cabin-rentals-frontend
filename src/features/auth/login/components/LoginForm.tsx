@@ -56,13 +56,10 @@ const LoginForm = () => {
 
       setServerError(null);
       resetForm();
-      console.log("Valor de response: ", response);
 
       toast.success("Has iniciado sesión correctamente");
-
-      setTimeout(() => {  
-        router.push('/'); // redirige a página deseada
-      }, 1000); 
+ 
+      router.push('/'); // redirige a página deseada 
     } catch (error) {
         const err = error as AxiosError<{ message: string }>;
         const message = err.response?.data?.message || 'Error al iniciar sesión';
@@ -70,46 +67,6 @@ const LoginForm = () => {
       }
   };
 
-  /* return (
-    <div className="w-full bg-white text-textPrimary p-6 rounded-xl shadow-md max-w-md border-[1px] border-gray-200">
-      <h2 className="text-2xl font-semibold mb-4 text-center">Iniciar sesión</h2>
-
-      <Formik
-        initialValues={initialValues}
-        validationSchema={validationSchema}
-        onSubmit={handleSubmit}
-      >
-        {({ isSubmitting }) => (
-          <Form className="space-y-4">
-            <div>
-              <label htmlFor="email" className="block mb-1 text-sm font-medium">Email</label>
-              <Field name="email" type="email" className="input border border-gray-300 rounded-lg p-2 text-black w-full" />
-              <ErrorMessage name="email" component="div" className="text-red-500 text-sm" />
-            </div>
-
-            <div>
-              <label htmlFor="password" className="block mb-1 text-sm font-medium">Contraseña</label>
-              <Field name="password" type="password" className="input border border-gray-300 rounded-lg p-2 text-black w-full" />
-              <ErrorMessage name="password" component="div" className="text-red-500 text-sm" />
-            </div>
-
-            <button
-              type="submit"
-              disabled={isSubmitting}
-              className="w-full bg-blue-600 hover:bg-blue-700 text-white py-2 rounded-md transition duration-200"
-            >
-              {isSubmitting ? 'Ingresando...' : 'Iniciar sesión'}
-            </button>
-
-            {serverError && <div className="text-red-600 text-center mt-2">{serverError}</div>}
-          </Form>
-        )}
-      </Formik>
-    </div>
-  );
-};
-
-export default LoginForm; */
 return (
     <div className="w-full bg-white dark:bg-gray-800 text-black dark:text-white p-6 rounded-xl shadow-md max-w-md border border-gray-200 dark:border-gray-700">
       <h2 className="text-2xl font-semibold mb-4 text-center">Iniciar sesión</h2>

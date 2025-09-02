@@ -55,9 +55,7 @@ const RegisterForm = () => {
       setSuccess("Usuario registrado correctamente 🎉");
       setServerError(null);
       resetForm();
-      setTimeout(() => {
         router.push("/auth/login");
-      }, 1000);
     } catch (error: unknown) {
       if (error instanceof Error) {
         setServerError(error.message);
@@ -97,6 +95,7 @@ const RegisterForm = () => {
                 Nombre
               </label>
               <Field
+                id="name"
                 name="name"
                 type="text"
                 className="input border border-gray-400 dark:border-gray-600 rounded-lg p-2 text-black dark:text-white w-full"
@@ -117,6 +116,7 @@ const RegisterForm = () => {
                 Apellido
               </label>
               <Field
+                id="lastName"
                 name="lastName"
                 type="text"
                 className="input border border-gray-400 dark:border-gray-600 rounded-lg p-2 text-black dark:text-white w-full"
@@ -134,6 +134,7 @@ const RegisterForm = () => {
                 Email
               </label>
               <Field
+                id="email"
                 name="email"
                 type="email"
                 className="input border border-gray-400 dark:border-gray-600 rounded-lg p-2 text-black dark:text-white w-full"
@@ -154,6 +155,7 @@ const RegisterForm = () => {
                 Contraseña
               </label>
               <Field
+                id="password"
                 name="password"
                 type="password"
                 className="input border border-gray-400 dark:border-gray-600 rounded-lg p-2 text-black dark:text-white w-full"
@@ -174,6 +176,7 @@ const RegisterForm = () => {
                 Confirmar contraseña
               </label>
               <Field
+                id="confirmPassword"
                 name="confirmPassword"
                 type="password"
                 className="input border border-gray-400 dark:border-gray-600 rounded-lg p-2 text-black dark:text-white w-full"

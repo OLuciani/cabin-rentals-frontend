@@ -4,7 +4,7 @@ import { useState } from "react";
 import { createBooking } from "../services/createBooking"; // Importa la función de crear reserva
 import { BookingFormData } from "../types/booking.types";
 import { useRouter } from "next/navigation";
-import { toast } from 'react-toastify';
+//import { toast } from 'react-toastify';
 
 export const useCreateBooking = () => {
   const [loading, setLoading] = useState(false);
@@ -29,7 +29,7 @@ export const useCreateBooking = () => {
         setFeedback("¡Reserva realizada con éxito!");
         setConfirmationCode(response.confirmationCode);  // Establece el código de confirmación
 
-        toast.success("¡Reserva realizada con éxito!"); 
+        //toast.success("¡Reserva realizada con éxito!"); 
         setTimeout(() => {   
             router.push("/"); // Una vez que se crea exitosamente la reserva se redirige a home.
         }, 4000);

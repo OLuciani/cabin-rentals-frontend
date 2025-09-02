@@ -20,17 +20,6 @@ export default function NewBookingPage() {
   const guestsParam = searchParams.get("guests");
   const guests = guestsParam && !isNaN(Number(guestsParam)) ? Number(guestsParam) : null;
 
-  console.log("Valor de guestParam: ", guestsParam);
-  console.log("VALOR DE guests: ",guests);
-
-  console.log(
-    "Valores recibidos en searchParams: ",
-    cabinId,
-    cabinName,
-    startDate,
-    endDate
-  );
-
   const router = useRouter();
 
   const user = useAuthStore((state) => state.user);
@@ -141,34 +130,14 @@ export default function NewBookingPage() {
             </p>
           </div>
 
-          {/* Resumen de la reserva */}
-          {/* <div className="bg-blue-100 p-4 rounded mb-6 space-y-2">
-            <h2 className="text-lg font-semibold mb-2">
-              Detalles de la reserva
-            </h2>
-            <p>
-              <strong>Cabaña:</strong> {cabinName}
-            </p>
-            <p>
-              <strong>Fecha de entrada:</strong>{" "}
-              {startDate ? format(new Date(startDate), "dd/MM/yyyy") : ""}
-            </p>
-            <p>
-              <strong>Fecha de salida:</strong>{" "}
-              {endDate ? format(new Date(endDate), "dd/MM/yyyy") : ""}
-            </p>
-            <p>
-              <strong>Huéspedes:</strong> {numberOfGuests}
-            </p>
-          </div> */}
-
           {/* Formulario para elegir cantidad de huéspedes y enviar */}
           <form onSubmit={handleSubmit} className="space-y-4">
             <div>
-              <label className="block font-medium mb-1">
+              <label htmlFor="guests-input" className="block font-medium mb-1">
                 Cantidad de huéspedes
               </label>
               <input
+                id="guests-input"
                 type="number"
                 className="w-44 p-2 border rounded"
                 value={numberOfGuests}
