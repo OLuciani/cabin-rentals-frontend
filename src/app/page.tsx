@@ -11,6 +11,7 @@ import DateFilter from "../features/availability/components/DateFilter";
 import Image from "next/image";
 import axios, { AxiosResponse } from "axios";
 import { useEffect } from "react";
+import { FiMapPin, FiHeart, FiCoffee } from "react-icons/fi";
 import Link from "next/link";
 
 export default function Home() {
@@ -72,58 +73,145 @@ export default function Home() {
       {/* Filtro de fechas de disponibilidad (componente modularizado) */}
       <DateFilter />
 
-      {/* Sección de Cabañas Destacadas (mock visual) */}
-      <section className="container mx-auto pb-12 px-4">
-        <h3 className="text-2xl font-bold mb-8 text-center">
-          Nuestras Cabañas Destacadas
+      {/* Sección "Por qué elegirnos" */}
+      <section className="container mx-auto py-16 px-4 text-center">
+        <h3 className="text-3xl font-bold mb-4">Una experiencia inolvidable</h3>
+        <p className="text-lg text-gray-600 dark:text-gray-400 mb-12 max-w-2xl mx-auto">
+          Descubrí por qué nuestros huéspedes nos eligen una y otra vez para sus
+          escapadas a la naturaleza.
+        </p>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-10">
+          <div className="flex flex-col items-center">
+            <FiMapPin className="text-accent dark:text-darkAccent text-5xl mb-4" />
+            <h4 className="text-xl font-semibold mb-2">Entorno Único</h4>
+            <p className="text-gray-600 dark:text-gray-400">
+              Cabañas inmersas en paisajes soñados, ideales para desconectar y
+              renovar energías.
+            </p>
+          </div>
+          <div className="flex flex-col items-center">
+            <FiHeart className="text-accent dark:text-darkAccent text-5xl mb-4" />
+            <h4 className="text-xl font-semibold mb-2">Comodidad Garantizada</h4>
+            <p className="text-gray-600 dark:text-gray-400">
+              Totalmente equipadas para que te sientas como en casa, pero en el
+              corazón del bosque.
+            </p>
+          </div>
+          <div className="flex flex-col items-center">
+            <FiCoffee className="text-accent dark:text-darkAccent text-5xl mb-4" />
+            <h4 className="text-xl font-semibold mb-2">Atención Personalizada</h4>
+            <p className="text-gray-600 dark:text-gray-400">
+              Estamos para ayudarte a que tu estadía sea perfecta, cuidando
+              cada detalle.
+            </p>
+          </div>
+        </div>
+      </section>
+
+      {/* Galería de Cabañas */}
+      <section className="bg-primary/5 dark:bg-darkPrimary/10 py-16">
+        <div className="container mx-auto px-4">
+          <h3 className="text-3xl font-bold mb-10 text-center">
+            Explorá nuestras cabañas
+          </h3>
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            {/* Cabin Card 1 */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+              <Image
+                src="/images/cabaña-1.jpg"
+                alt="Cabaña de la Pradera"
+                width={600}
+                height={400}
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-6">
+                <h4 className="text-xl font-bold">Cabaña de la Pradera</h4>
+                <p className="text-sm mt-2">
+                  Ideal para conectarte con la naturaleza.
+                </p>
+              </div>
+            </div>
+            {/* Cabin Card 2 */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+              <Image
+                src="/images/cabaña-2.jpg"
+                alt="Cabaña del Cerro"
+                width={600}
+                height={400}
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-6">
+                <h4 className="text-xl font-bold">Cabaña del Cerro</h4>
+                <p className="text-sm mt-2">
+                  Vistas increíbles del Cerro Blanco.
+                </p>
+              </div>
+            </div>
+            {/* Cabin Card 3 */}
+            <div className="bg-white dark:bg-gray-800 rounded-lg shadow-lg overflow-hidden transform hover:scale-105 transition-transform duration-300">
+              <Image
+                src="/images/cabaña-3.jpg"
+                alt="Cabaña del Lago"
+                width={600}
+                height={400}
+                className="w-full h-56 object-cover"
+              />
+              <div className="p-6">
+                <h4 className="text-xl font-bold">Cabaña del Lago</h4>
+                <p className="text-sm mt-2">Con muelle para embarcaciones.</p>
+              </div>
+            </div>
+          </div>
+          <div className="text-center mt-12">
+            <Link href="/cabins">
+              <button className="bg-accent dark:bg-darkAccent hover:bg-darkAccent dark:hover:bg-accent text-white font-bold py-3 px-8 rounded-lg text-lg transition-colors">
+                Ver todas las cabañas
+              </button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* Testimonios */}
+      <section className="container mx-auto py-16 px-4 text-center">
+        <h3 className="text-3xl font-bold mb-10">
+          Lo que dicen nuestros clientes
         </h3>
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-          {/* Cabin Card 1 */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-lg overflow-hidden">
-            <Image
-              src="/images/cabaña-1.jpg"
-              alt="Cabaña 1"
-              width={600}
-              height={400}
-              className="w-full object-cover"
-            />
-            <div className="p-4">
-              <h4 className="font-bold">Cabaña de la Pradera</h4>
-              <p className="text-sm">
-                Ideal para conectarte con la naturaleza.
-              </p>
-            </div>
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-8 max-w-4xl mx-auto">
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+            <p className="italic">
+              Un lugar mágico. La cabaña era perfecta y el entorno inmejorable.
+              ¡Volveremos sin dudarlo!
+            </p>
+            <p className="font-semibold mt-4">- Familia González</p>
           </div>
-          {/* Cabin Card 2 */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-lg overflow-hidden">
-            <Image
-              src="/images/cabaña-2.jpg"
-              alt="Cabaña 2"
-              width={600}
-              height={400}
-              className="w-full object-cover"
-            />
-            <div className="p-4">
-              <h4 className="font-bold">Cabaña del Cerro</h4>
-              <p className="text-sm">Vistas increíbles del Cerro Blanco.</p>
-            </div>
+          <div className="bg-white dark:bg-gray-800 p-6 rounded-lg shadow-md">
+            <p className="italic">
+              La escapada de fin de semana que necesitábamos. Paz, naturaleza y
+              una atención de primera. 100% recomendado.
+            </p>
+            <p className="font-semibold mt-4">- Ana y Marcos</p>
           </div>
-          {/* Cabin Card 3 */}
-          <div className="bg-white dark:bg-gray-800 rounded-lg shadow-md dark:shadow-lg overflow-hidden">
-            <Image
-              src="/images/cabaña-3.jpg"
-              alt="Cabaña 3"
-              width={600}
-              height={400}
-              className="w-full object-cover"
-            />
-            <div className="p-4">
-              <h4 className="font-bold">Cabaña del Lago</h4>
-              <p className="text-sm">Con muelle para embarcaciones.</p>
-            </div>
-          </div>
+        </div>
+      </section>
+
+      {/* Call to Action Final */}
+      <section className="bg-accent dark:bg-darkAccent text-white py-16">
+        <div className="container mx-auto px-4 text-center">
+          <h3 className="text-3xl font-bold mb-4">
+            ¿Listo para tu próxima aventura?
+          </h3>
+          <p className="text-lg mb-8">
+            Tu refugio en la naturaleza te está esperando.
+          </p>
+          <Link href="/cabins">
+            <button className="bg-white text-accent dark:text-darkAccent font-bold py-3 px-8 rounded-lg text-lg hover:bg-gray-200 transition-colors">
+              Reservar ahora
+            </button>
+          </Link>
         </div>
       </section>
     </div>
   );
 }
+
