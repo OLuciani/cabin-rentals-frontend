@@ -122,23 +122,6 @@ const DateFilter = () => {
                         setShowCalendar(false);
                       }
                     }}
-                    /* onChange={(item) => {
-                      const start = item.selection.startDate ?? new Date();
-                      const end = item.selection.endDate ?? new Date();
-
-                      setDateRange([
-                        { startDate: start, endDate: end, key: "selection" },
-                      ]);
-
-                      // Cerrar calendario si se eligió un rango válido
-                      if (
-                        start &&
-                        end &&
-                        start.toDateString() !== end.toDateString()
-                      ) {
-                        setShowCalendar(false);
-                      }
-                    }} */
                     moveRangeOnFirstSelection={false}
                     ranges={dateRange}
                     rangeColors={["#4F46E5"]}
